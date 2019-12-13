@@ -16,7 +16,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="BOULDER")
 	private Set<Boulder> boulders;
 	private String username;
 	private String password;
@@ -104,7 +104,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", boulders=" + boulders + ", username=" + username +"]";
+		return "User [id=" + id + ", boulders=" + boulders + ", username=" + username +"password=" + password + "]";
 	}
  
 

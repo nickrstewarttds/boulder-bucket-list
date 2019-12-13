@@ -2,6 +2,7 @@ package com.bae.persistence.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,16 +12,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "BOULDER")
+@Table(name = "boulder")
 public class Boulder {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="boulder_id")
 	private long id;
 	@ManyToOne
 	@JoinColumn(name = "id", nullable = false)
 	private User user;
-	private String name;
+	private String name; 
 	private String location;
 	private String grade;
 	private String status;
@@ -30,7 +32,7 @@ public class Boulder {
 
 	public Boulder() {}
 	
-  	public Boulder(String name, String location, String grade, String status) {
+	public Boulder(String name, String location, String grade, String status) {
   		this.name = name;
   		this.location = location;
   		this.grade = grade;

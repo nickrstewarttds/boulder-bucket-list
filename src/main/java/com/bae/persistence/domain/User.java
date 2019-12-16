@@ -2,6 +2,7 @@ package com.bae.persistence.domain;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,15 +19,18 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="user_id")
 	private long id;
-	@OneToMany(mappedBy="id")
+	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Boulder> boulders;
 	private String username;
 	private String password;
 	
 	
-	public User() {}
+	public User() {
+		super();
+	}
 	
 	public User(String username, String password) {
+		super();
 		this.username = username;
 		this.password = password;
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bae.exceptions.BoulderNotFoundException;
 import com.bae.persistence.domain.Boulder;
 import com.bae.persistence.repo.BoulderRepo;
 
@@ -27,12 +28,27 @@ public class BoulderService {
 	}
 	
 	public String deleteBoulder(Long boulderId) {
+		if (!boulderRepo.existsById(boulderId)) {
+			throw new BoulderNotFoundException();
+		}
 		boulderRepo.deleteById(boulderId);
 		return "Boulder deleted";
 	}
 	
-	public Boulder updateBoulder(Boulder boulderToUpdate) {
-		return boulderRepo.save(boulderToUpdate);
+	public Boulder findBoulderById(Long boulderId) {
+		return boulderRepo.findById(boulderId).orElseThrow(
+				() -> new BoulderNotFoundException());
+	}
+	
+	public Boulder updateBoulder(Boulder boulder, Long id) {
+		Boulder toUpdate = findBoulderById(id);
+		toUpdate.setName(boulder.getName());
+		toUpdate.setLocation(boulder.getLocation());
+		toUpdate.setGrade(boulder.getGrade());
+		toUpdate.setStatus(boulder.getStatus());
+		toUpdate.setAttemptDate(boulder.getAttemptDate());
+		toUpdate.setCompletionDate(boulder.getCompletionDate());
+		return boulderRepo.save(toUpdate);
 	}
 
 }

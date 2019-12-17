@@ -40,8 +40,8 @@ public class BoulderController {
 	}
 	
 	@PutMapping("/boulder/{boulderId}")
-	public Boulder updateBoulder(@RequestBody Boulder boulderToUpdate) {
-		return service.updateBoulder(boulderToUpdate);
+	public Boulder updateBoulder(@RequestBody Boulder boulder, @PathVariable(value="boulderId") Long boulderId) {
+		return service.updateBoulder(boulder, boulderId);
 	}
 	
 }

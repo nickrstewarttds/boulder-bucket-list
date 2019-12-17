@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +37,11 @@ public class BoulderController {
 	@DeleteMapping("/boulder/{boulderId}")
 	public String deleteBoulder(@PathVariable(value="boulderId") Long boulderId) {
 		return service.deleteBoulder(boulderId);
+	}
+	
+	@PutMapping("/boulder/{boulderId}")
+	public Boulder updateBoulder(@RequestBody Boulder boulderToUpdate) {
+		return service.updateBoulder(boulderToUpdate);
 	}
 	
 }

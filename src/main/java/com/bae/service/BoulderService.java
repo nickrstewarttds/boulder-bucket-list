@@ -30,5 +30,9 @@ public class BoulderService {
 		boulderRepo.deleteById(boulderId);
 		return "Boulder deleted";
 	}
+	
+	public Boulder updateBoulder(Boulder boulderToUpdate) {
+		return boulderRepo.save(boulderToUpdate);
+	}
 
 }

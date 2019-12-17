@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +33,8 @@ public class BoulderController {
 		return service.addBoulder(newBoulder);
 	}
 	
-	@DeleteMapping("/boulder/{id}")
-	public String deleteBoulder(@RequestBody Long boulderId) {
+	@DeleteMapping("/boulder/{boulderId}")
+	public String deleteBoulder(@PathVariable(value="boulderId") Long boulderId) {
 		return service.deleteBoulder(boulderId);
 	}
 	

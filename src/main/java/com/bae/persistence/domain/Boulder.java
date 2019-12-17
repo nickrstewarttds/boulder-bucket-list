@@ -2,6 +2,7 @@ package com.bae.persistence.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +19,7 @@ public class Boulder {
 	private String name; 
 	private String location;
 	private String grade;
+	@Column(nullable=false)
 	private String status;
 	private Date attemptDate;
 	private Date completionDate;

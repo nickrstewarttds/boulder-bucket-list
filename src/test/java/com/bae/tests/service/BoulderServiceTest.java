@@ -98,7 +98,7 @@ public class BoulderServiceTest {
 		assertEquals(updatedBoulder, this.service.updateBoulder(newBoulder, this.id));
 		
 		verify(this.repo, times(1)).findById(1L);
-		verify(this.repo, times(1)).save(updatedBoulder);
+		verify(this.repo, times(1)).save(updatedBoulder); 
 	}
 
 }

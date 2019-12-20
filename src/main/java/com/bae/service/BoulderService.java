@@ -48,7 +48,7 @@ public class BoulderService {
 		toUpdate.setStatus(boulder.getStatus());
 		toUpdate.setAttemptDate(boulder.getAttemptDate());
 		toUpdate.setCompletionDate(boulder.getCompletionDate());
-		return this.boulderRepo.save(toUpdate);
+		return boulderRepo.save(toUpdate);
 	}
 
 }

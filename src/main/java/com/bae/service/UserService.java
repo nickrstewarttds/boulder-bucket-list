@@ -45,7 +45,8 @@ public class UserService {
 		toUpdate.setUsername(user.getUsername());
 		toUpdate.setPassword(user.getPassword());
 		toUpdate.setBoulders(user.getBoulders());
-		return this.userRepo.save(toUpdate);
+		return userRepo.save(toUpdate);
 	}
+
 
 }

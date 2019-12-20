@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bae.exceptions.BoulderNotFoundException;
 import com.bae.exceptions.InvalidDatesException;
+import com.bae.exceptions.InvalidStatusException;
 import com.bae.persistence.domain.Boulder;
 import com.bae.persistence.repo.BoulderRepo;
 
@@ -59,6 +60,12 @@ public class BoulderService {
 		}
 		if (boulder.getAttemptDate().after(boulder.getCompletionDate())) {
 			throw new InvalidDatesException();
+		}
+	}
+	
+	public static void checkStatus(Boulder boulder) {
+		if (boulder.getStatus().equals(null)) {
+			throw new InvalidStatusException();
 		}
 	}
 }

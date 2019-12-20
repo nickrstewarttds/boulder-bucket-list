@@ -6,13 +6,14 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.bae.persistence.domain.Boulder;
+import com.bae.service.Status;
 
 
 public class BoulderTest {
 	
 	private Date testAttemptDate = new Date(2001-01-01);
 	private Date testCompletionDate = new Date(2001-01-01);
-	private Boulder testBoulder = new Boulder("testName", "testLocation", "testGrade","testStatus",testAttemptDate,testCompletionDate);
+	private Boulder testBoulder = new Boulder("testName", "testLocation", "testGrade",Status.ATTEMPTED,testAttemptDate,testCompletionDate);
 
 	@Test
 	public void getNameTest() {

@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.bae.service.Status;
+
 @Entity
 @Table(name = "boulder")
 public class Boulder {
@@ -20,21 +22,21 @@ public class Boulder {
 	private String location;
 	private String grade;
 	@Column(nullable=false)
-	private String status;
+	private Status status;
 	private Date attemptDate;
 	private Date completionDate;
 	
 
 	public Boulder() {}
 	
-	public Boulder(String name, String location, String grade, String status) {
+	public Boulder(String name, String location, String grade, Status status) {
   		this.name = name;
   		this.location = location;
   		this.grade = grade;
   		this.status = status;
   	}
   	
-  	public Boulder(String name, String location, String grade, String status, Date attemptDate) {
+  	public Boulder(String name, String location, String grade, Status status, Date attemptDate) {
   		this.name = name;
   		this.location = location;
   		this.grade = grade;
@@ -42,7 +44,7 @@ public class Boulder {
   		this.attemptDate = attemptDate;
   	}
   	
- 	public Boulder(String name, String location, String grade, String status, Date attemptDate, Date completionDate) {
+ 	public Boulder(String name, String location, String grade, Status status, Date attemptDate, Date completionDate) {
   		this.name = name;
   		this.location = location;
   		this.grade = grade;
@@ -84,11 +86,11 @@ public class Boulder {
 		this.grade = grade;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

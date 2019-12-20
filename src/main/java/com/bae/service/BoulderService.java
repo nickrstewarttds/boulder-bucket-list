@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bae.exceptions.BoulderNotFoundException;
+import com.bae.exceptions.InvalidDatesException;
 import com.bae.persistence.domain.Boulder;
 import com.bae.persistence.repo.BoulderRepo;
 
@@ -24,6 +25,7 @@ public class BoulderService {
 	}
 	
 	public Boulder addBoulder(Boulder newBoulder) {
+		checkCompletionDate(newBoulder);
 		return boulderRepo.save(newBoulder);
 	}
 	
@@ -50,5 +52,13 @@ public class BoulderService {
 		toUpdate.setCompletionDate(boulder.getCompletionDate());
 		return boulderRepo.save(toUpdate);
 	}
-
+	
+	public static void checkCompletionDate(Boulder boulder) {
+		if (boulder.getCompletionDate() != null && boulder.getAttemptDate() == null) {
+			throw new InvalidDatesException();
+		}
+		if (boulder.getAttemptDate().after(boulder.getCompletionDate())) {
+			throw new InvalidDatesException();
+		}
+	}
 }

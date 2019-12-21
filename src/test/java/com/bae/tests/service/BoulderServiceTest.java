@@ -1,6 +1,7 @@
 package com.bae.tests.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -18,12 +19,13 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.bae.exceptions.InvalidDatesException;
+import com.bae.exceptions.InvalidGradeException;
 import com.bae.exceptions.InvalidStatusException;
 import com.bae.persistence.domain.Boulder;
 import com.bae.persistence.repo.BoulderRepo;
 import com.bae.service.BoulderService;
-import com.bae.service.Status;
 import com.bae.util.Grade;
+import com.bae.util.Status;
 
 @RunWith(SpringRunner.class)
 public class BoulderServiceTest {
@@ -119,10 +121,10 @@ public class BoulderServiceTest {
 		}
 		fail();
 	}
-	
+
 	@Test
 	public void attemptAfterCompletionTest() {
-		this.testBadAttemptDate = new Date(2002-01-01);
+		this.testBadAttemptDate = new Date(2002 - 01 - 01);
 		this.testBoulderWithID.setAttemptDate(testBadAttemptDate);
 		when(this.repo.save(testBoulder)).thenReturn(testBoulderWithID);
 		try {
@@ -132,7 +134,7 @@ public class BoulderServiceTest {
 		}
 		fail();
 	}
-	
+
 	@Test
 	public void statusNotNullTest() {
 		this.testBoulderWithID.setStatus(null);
@@ -142,6 +144,19 @@ public class BoulderServiceTest {
 		} catch (InvalidStatusException e) {
 			return;
 		}
+		fail();
+	}
+
+	@Test
+	public void gradeNotNullTest() {
+		this.testBoulderWithID.setGrade(null);
+		when(this.repo.save(testBoulder)).thenReturn(testBoulderWithID);
+		try {
+			this.service.addBoulder(testBoulderWithID);
+		} catch (InvalidGradeException e) {
+			return;
+		}
+		fail();
 	}
 
 }

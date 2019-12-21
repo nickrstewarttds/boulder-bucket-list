@@ -9,50 +9,50 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.bae.service.Status;
 import com.bae.util.Grade;
+import com.bae.util.Status;
 
 @Entity
 @Table(name = "boulder")
 public class Boulder {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String name; 
+	private String name;
 	private String location;
 	private Grade grade;
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private Status status;
 	private Date attemptDate;
 	private Date completionDate;
-	
 
-	public Boulder() {}
-	
+	public Boulder() {
+	}
+
 	public Boulder(String name, String location, Grade grade, Status status) {
-  		this.name = name;
-  		this.location = location;
-  		this.grade = grade;
-  		this.status = status;
-  	}
-  	
-  	public Boulder(String name, String location, Grade grade, Status status, Date attemptDate) {
-  		this.name = name;
-  		this.location = location;
-  		this.grade = grade;
-  		this.status = status;
-  		this.attemptDate = attemptDate;
-  	}
-  	
- 	public Boulder(String name, String location, Grade grade, Status status, Date attemptDate, Date completionDate) {
-  		this.name = name;
-  		this.location = location;
-  		this.grade = grade;
-  		this.status = status;
-  		this.attemptDate = attemptDate;
-  		this.completionDate = completionDate;
-  	}
+		this.name = name;
+		this.location = location;
+		this.grade = grade;
+		this.status = status;
+	}
+
+	public Boulder(String name, String location, Grade grade, Status status, Date attemptDate) {
+		this.name = name;
+		this.location = location;
+		this.grade = grade;
+		this.status = status;
+		this.attemptDate = attemptDate;
+	}
+
+	public Boulder(String name, String location, Grade grade, Status status, Date attemptDate, Date completionDate) {
+		this.name = name;
+		this.location = location;
+		this.grade = grade;
+		this.status = status;
+		this.attemptDate = attemptDate;
+		this.completionDate = completionDate;
+	}
 
 	public long getId() {
 		return id;
@@ -61,7 +61,6 @@ public class Boulder {
 	public void setId(long id) {
 		this.id = id;
 	}
-
 
 	public String getName() {
 		return name;
@@ -168,9 +167,5 @@ public class Boulder {
 			return false;
 		return true;
 	}
-
-
-  	
-
 
 }

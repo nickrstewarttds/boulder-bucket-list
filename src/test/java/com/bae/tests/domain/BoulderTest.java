@@ -7,13 +7,14 @@ import org.junit.Test;
 
 import com.bae.persistence.domain.Boulder;
 import com.bae.service.Status;
+import com.bae.util.Grade;
 
 
 public class BoulderTest {
 	
 	private Date testAttemptDate = new Date(2001-01-01);
 	private Date testCompletionDate = new Date(2001-01-01);
-	private Boulder testBoulder = new Boulder("testName", "testLocation", "testGrade",Status.ATTEMPTED,testAttemptDate,testCompletionDate);
+	private Boulder testBoulder = new Boulder("testName", "testLocation", Grade._5A, Status.ATTEMPTED, testAttemptDate, testCompletionDate);
 
 	@Test
 	public void getNameTest() {

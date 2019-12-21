@@ -23,6 +23,7 @@ import com.bae.persistence.domain.Boulder;
 import com.bae.persistence.repo.BoulderRepo;
 import com.bae.service.BoulderService;
 import com.bae.service.Status;
+import com.bae.util.Grade;
 
 @RunWith(SpringRunner.class)
 public class BoulderServiceTest {
@@ -53,7 +54,7 @@ public class BoulderServiceTest {
 		this.testCompletionDate = new Date(2001 - 01 - 01);
 		this.boulderList = new ArrayList<>();
 		this.boulderList.add(testBoulder);
-		this.testBoulder = new Boulder("testName", "testLocation", "testGrade", Status.COMPLETED, testAttemptDate,
+		this.testBoulder = new Boulder("testName", "testLocation", Grade._5A, Status.COMPLETED, testAttemptDate,
 				testCompletionDate);
 		this.testBoulderWithID = new Boulder(testBoulder.getName(), testBoulder.getLocation(), testBoulder.getGrade(),
 				testBoulder.getStatus(), testBoulder.getAttemptDate(), testBoulder.getCompletionDate());
@@ -92,7 +93,7 @@ public class BoulderServiceTest {
 	public void updateBoulderTest() {
 		Date newAttemptDate = new Date(2019 - 12 - 18);
 		Date newCompletionDate = new Date(2019 - 12 - 18);
-		Boulder newBoulder = new Boulder("Chris Rock", "Madagascar", "6A", Status.COMPLETED, newAttemptDate,
+		Boulder newBoulder = new Boulder("Chris Rock", "Madagascar", Grade._6A, Status.COMPLETED, newAttemptDate,
 				newCompletionDate);
 		Boulder updatedBoulder = new Boulder(newBoulder.getName(), newBoulder.getLocation(), newBoulder.getGrade(),
 				newBoulder.getStatus(), newBoulder.getAttemptDate(), newBoulder.getCompletionDate());

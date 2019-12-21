@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.bae.service.Status;
+import com.bae.util.Grade;
 
 @Entity
 @Table(name = "boulder")
@@ -20,7 +21,7 @@ public class Boulder {
 	private long id;
 	private String name; 
 	private String location;
-	private String grade;
+	private Grade grade;
 	@Column(nullable=false)
 	private Status status;
 	private Date attemptDate;
@@ -29,14 +30,14 @@ public class Boulder {
 
 	public Boulder() {}
 	
-	public Boulder(String name, String location, String grade, Status status) {
+	public Boulder(String name, String location, Grade grade, Status status) {
   		this.name = name;
   		this.location = location;
   		this.grade = grade;
   		this.status = status;
   	}
   	
-  	public Boulder(String name, String location, String grade, Status status, Date attemptDate) {
+  	public Boulder(String name, String location, Grade grade, Status status, Date attemptDate) {
   		this.name = name;
   		this.location = location;
   		this.grade = grade;
@@ -44,7 +45,7 @@ public class Boulder {
   		this.attemptDate = attemptDate;
   	}
   	
- 	public Boulder(String name, String location, String grade, Status status, Date attemptDate, Date completionDate) {
+ 	public Boulder(String name, String location, Grade grade, Status status, Date attemptDate, Date completionDate) {
   		this.name = name;
   		this.location = location;
   		this.grade = grade;
@@ -78,11 +79,11 @@ public class Boulder {
 		this.location = location;
 	}
 
-	public String getGrade() {
+	public Grade getGrade() {
 		return grade;
 	}
 
-	public void setGrade(String grade) {
+	public void setGrade(Grade grade) {
 		this.grade = grade;
 	}
 

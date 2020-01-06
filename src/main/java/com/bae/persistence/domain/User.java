@@ -2,11 +2,12 @@ package com.bae.persistence.domain;
 
 import java.util.Set;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -16,17 +17,21 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="user_id")
 	private long id;
-	@OneToMany(mappedBy="id")
-	private Set<Boulder> boulders;
 	private String username;
 	private String password;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="user_id")
+	private Set<Boulder> boulders;
 	
-	public User() {}
+	
+	public User() {
+		super();
+	}
 	
 	public User(String username, String password) {
+		super();
 		this.username = username;
 		this.password = password;
 	}

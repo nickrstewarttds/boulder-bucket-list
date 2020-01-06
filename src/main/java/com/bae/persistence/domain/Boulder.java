@@ -7,54 +7,52 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.bae.util.Grade;
+import com.bae.util.Status;
 
 @Entity
 @Table(name = "boulder")
 public class Boulder {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="boulder_id")
 	private long id;
-	@ManyToOne
-	@JoinColumn(name = "id", nullable = false)
-	private User user;
-	private String name; 
+	private String name;
 	private String location;
-	private String grade;
-	private String status;
+	private Grade grade;
+	@Column(nullable = false)
+	private Status status;
 	private Date attemptDate;
 	private Date completionDate;
-	
 
-	public Boulder() {}
-	
-	public Boulder(String name, String location, String grade, String status) {
-  		this.name = name;
-  		this.location = location;
-  		this.grade = grade;
-  		this.status = status;
-  	}
-  	
-  	public Boulder(String name, String location, String grade, String status, Date attemptDate) {
-  		this.name = name;
-  		this.location = location;
-  		this.grade = grade;
-  		this.status = status;
-  		this.attemptDate = attemptDate;
-  	}
-  	
- 	public Boulder(String name, String location, String grade, String status, Date attemptDate, Date completionDate) {
-  		this.name = name;
-  		this.location = location;
-  		this.grade = grade;
-  		this.status = status;
-  		this.attemptDate = attemptDate;
-  		this.completionDate = completionDate;
-  	}
+	public Boulder() {
+	}
+
+	public Boulder(String name, String location, Grade grade, Status status) {
+		this.name = name;
+		this.location = location;
+		this.grade = grade;
+		this.status = status;
+	}
+
+	public Boulder(String name, String location, Grade grade, Status status, Date attemptDate) {
+		this.name = name;
+		this.location = location;
+		this.grade = grade;
+		this.status = status;
+		this.attemptDate = attemptDate;
+	}
+
+	public Boulder(String name, String location, Grade grade, Status status, Date attemptDate, Date completionDate) {
+		this.name = name;
+		this.location = location;
+		this.grade = grade;
+		this.status = status;
+		this.attemptDate = attemptDate;
+		this.completionDate = completionDate;
+	}
 
 	public long getId() {
 		return id;
@@ -62,14 +60,6 @@ public class Boulder {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public String getName() {
@@ -88,19 +78,19 @@ public class Boulder {
 		this.location = location;
 	}
 
-	public String getGrade() {
+	public Grade getGrade() {
 		return grade;
 	}
 
-	public void setGrade(String grade) {
+	public void setGrade(Grade grade) {
 		this.grade = grade;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 
@@ -121,12 +111,6 @@ public class Boulder {
 	}
 
 	@Override
-	public String toString() {
-		return "Boulder [id=" + id + ", user=" + user + ", name=" + name + ", location=" + location + ", grade=" + grade
-				+ ", status=" + status + ", attemptDate=" + attemptDate + ", completionDate=" + completionDate + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -137,7 +121,6 @@ public class Boulder {
 		result = prime * result + ((location == null) ? 0 : location.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -182,15 +165,7 @@ public class Boulder {
 				return false;
 		} else if (!status.equals(other.status))
 			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;
 		return true;
 	}
-  	
-  	
-
 
 }

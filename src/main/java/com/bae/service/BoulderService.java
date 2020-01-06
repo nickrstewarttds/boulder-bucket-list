@@ -15,9 +15,9 @@ import com.bae.persistence.repo.BoulderRepo;
 @Service
 public class BoulderService {
 
-	@Autowired
 	private BoulderRepo boulderRepo;
 
+	@Autowired
 	public BoulderService(BoulderRepo boulderRepo) {
 		this.boulderRepo = boulderRepo;
 	}
@@ -42,7 +42,7 @@ public class BoulderService {
 	}
 
 	public Boulder findBoulderById(Long boulderId) {
-		return boulderRepo.findById(boulderId).orElseThrow(() -> new BoulderNotFoundException());
+		return boulderRepo.findById(boulderId).orElseThrow(BoulderNotFoundException::new);
 	}
 
 	public Boulder updateBoulder(Boulder boulder, Long id) {

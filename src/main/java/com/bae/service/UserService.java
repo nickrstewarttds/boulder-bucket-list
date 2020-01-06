@@ -11,22 +11,22 @@ import com.bae.persistence.repo.UserRepo;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
 	private UserRepo userRepo;
-	
+
 	public UserService(UserRepo userRepo) {
 		this.userRepo = userRepo;
 	}
-	
+
 	public List<User> getAllUsers() {
 		return userRepo.findAll();
 	}
-	
+
 	public User addUser(User newUser) {
 		return userRepo.save(newUser);
 	}
-	
+
 	public String deleteUser(Long userId) {
 		if (!userRepo.existsById(userId)) {
 			throw new UserNotFoundException();
@@ -34,12 +34,11 @@ public class UserService {
 		userRepo.deleteById(userId);
 		return "User deleted";
 	}
-	
+
 	public User findUserById(Long userId) {
-		return userRepo.findById(userId).orElseThrow(
-				() -> new UserNotFoundException());
+		return userRepo.findById(userId).orElseThrow(UserNotFoundException::new);
 	}
-	
+
 	public User updateUser(User user, Long id) {
 		User toUpdate = findUserById(id);
 		toUpdate.setUsername(user.getUsername());
@@ -47,6 +46,5 @@ public class UserService {
 		toUpdate.setBoulders(user.getBoulders());
 		return userRepo.save(toUpdate);
 	}
-
 
 }

@@ -28,12 +28,12 @@ public class BoulderTest {
 
 	@Test
 	public void getGradeTest() {
-		Assert.assertEquals("testGrade", testBoulder.getGrade());
+		Assert.assertEquals(Grade._5A, testBoulder.getGrade());
 	}
 
 	@Test
 	public void getStatusTest() {
-		Assert.assertEquals("testStatus", testBoulder.getStatus());
+		Assert.assertEquals(Status.ATTEMPTED, testBoulder.getStatus());
 	}
 
 	@Test

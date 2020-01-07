@@ -106,6 +106,12 @@ td {
     opacity: 0.8;
 }
 
+#deletered {
+    position: absolute;
+    right: -40px;
+    top: 2px;
+}
+
 #delete {
     position: absolute;
     right: -40px;
@@ -113,6 +119,5 @@ td {
 }
 
 #delete:hover {
-    opacity: 0.8;
-    fill: firebrick;
+    opacity: 0;
 }

@@ -6,18 +6,12 @@ import org.junit.Test;
 import com.bae.persistence.domain.User;
 
 public class UserTest {
-	
-	
-	private User testUser = new User("testUsername", "testPassword");
 
-	
+	private User testUser = new User("testName");
+
 	@Test
 	public void getUsernameTest() {
-		Assert.assertEquals("testUsername",testUser.getUsername());
+		Assert.assertEquals("testName", testUser.getName());
 	}
-	
-	@Test
-	public void getPasswordTest() {
-		Assert.assertEquals("testPassword",testUser.getPassword());
-	}
+
 }

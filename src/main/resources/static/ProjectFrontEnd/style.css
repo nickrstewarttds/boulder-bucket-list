@@ -1,0 +1,118 @@
+body {
+    font-family: 'Agency FB Bold', arial;
+    background-color: antiquewhite;
+}
+
+.page-heading {
+    text-align: center;
+    margin-top: -50px;
+    font-size: large;
+}
+
+.sub-heading {
+    text-align: center;
+    padding-top: 20px;
+}
+
+form {
+    border: 3px solid #f1f1f1;
+}
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: 'Agency FB', arial;
+    font-size: medium;
+}
+
+.textButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: auto;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    font-family: 'Agency FB Bold', arial;
+    font-size: medium;
+    border-radius: 12px;
+}
+
+#signOut {
+    margin-left: 5px;
+    width: 100px;
+    font-size: small;
+    background-color: gray;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.container {
+    align-items: center;
+    width: 30%;
+    margin: auto;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: auto;
+    width: 90%;
+    background-color: white;
+}
+
+th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: auto;
+    width: 15%;
+    height: 30px;
+}
+
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: auto;
+    width: 15%;
+    height: 25px;
+    font-family: 'Agency FB', arial;
+    text-align: center;
+}
+
+#addButton {
+    width: 200px;
+    padding-top: 100px;
+    margin: auto;
+}
+
+.updateDelete {
+    position: relative;
+}
+
+#update {
+    position: absolute;
+    right: -20px;
+    top: 2px;
+}
+
+#update:hover {
+    opacity: 0.8;
+}
+
+#delete {
+    position: absolute;
+    right: -40px;
+    top: 2px;
+}
+
+#delete:hover {
+    opacity: 0.8;
+    fill: firebrick;
+}

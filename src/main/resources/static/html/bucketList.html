@@ -2,6 +2,7 @@
 
 <head>
     <title>Bouldering Bucket List</title>
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -16,47 +17,52 @@
 
     <div>
         <table>
-            <tr>
-                <th>
-                    Boulder name
-                </th>
-                <th>
-                    Location
-                </th>
-                <th>
-                    Grade
-                </th>
-                <th>
-                    Status
-                </th>
-                <th>
-                    Date of First Attempt
-                </th>
-                <th>
-                    Date of Completion
-                </th>
-            </tr>
-            <tr>
-                <td>Slip Slap Slop</td>
-                <td>Magic Wood</td>
-                <td>7A+</td>
-                <td style="background-color:#f34b4b;">Not Attempted</td>
-                <td>Not attempted</td>
-                <td>
-                    <div class="updateDelete">
-                        Not completed
-                        <input type="image" id="update" src="../resources/pencil.png"  alt=""/>
-                        <input type="image" id="deletered" src="../resources/binred.png"  alt=""/>
-                        <input type="image" id="delete" src="../resources/bin.png"  alt=""/>
-                    </div>
+            <tbody id="boulderTable">
+                <tr>
+                    <th>
+                        Boulder name
+                    </th>
+                    <th>
+                        Location
+                    </th>
+                    <th>
+                        Grade
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Date of First Attempt
+                    </th>
+                    <th>
+                        Date of Completion
+                    </th>
+                </tr>
+<!--                <tr>-->
+<!--                    <td>Slip Slap Slop</td>-->
+<!--                    <td>Magic Wood</td>-->
+<!--                    <td>7A+</td>-->
+<!--                    <td style="background-color:#f34b4b;">Not Attempted</td>-->
+<!--                    <td>Not attempted</td>-->
+<!--                    <td>Not completed-->
+<!--                        <div class="updateDelete">-->
+<!--                            <input type="image" id="update" src="../resources/pencil.png"  alt=""/>-->
+<!--                            <input type="image" id="deletered" src="../resources/binred.png"  alt=""/>-->
+<!--                            <input type="image" id="delete" src="../resources/bin.png"  alt=""/>-->
+<!--                        </div>-->
 
-                </td>
-            </tr>
+<!--                    </td>-->
+<!--                </tr>-->
+            </tbody>
         </table>
     </div>
     <div id="addButton">
         <button class="textButton">Add a climb</button>
     </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../javaScript/tableBuilder.js"></script>
+    <script>createTable()</script>
 </body>
 
 </html>

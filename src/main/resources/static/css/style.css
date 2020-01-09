@@ -1,5 +1,10 @@
 body {
     background-color: antiquewhite;
+    font-family: 'Orbitron', serif;
+}
+
+button {
+    font-family: 'Orbitron', serif;
 }
 
 .page-heading {
@@ -15,17 +20,6 @@ body {
 
 form {
     border: 3px solid #f1f1f1;
-}
-
-input[type=text],
-input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-size: medium;
 }
 
 .textButton {
@@ -100,7 +94,7 @@ td {
 #update {
     position: absolute;
     right: -20px;
-    top: 2px;
+    top: -17px;
 }
 
 #update:hover {
@@ -110,13 +104,13 @@ td {
 #deletered {
     position: absolute;
     right: -40px;
-    top: 2px;
+    top: -17px;
 }
 
 #delete {
     position: absolute;
     right: -40px;
-    top: 2px;
+    top: -17px;
 }
 
 #delete:hover {

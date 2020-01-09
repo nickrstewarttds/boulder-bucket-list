@@ -12,20 +12,36 @@ function createRow(boulder) {
     let bin = document.createElement('input');
     let redbin = document.createElement('input');
 
-    name.innerText = boulder.name.toString();
-    location.innerText = boulder.location.toString();
-    grade.innerText = boulder.grade.toString();
-    status.innerText = boulder.status.toString();
-    if (boulder.attemptDate == null) {
-        attemptDate.innerText = "Not Attempted"
+    let unformattedName = boulder.name.toString();
+    name.innerText = unformattedName.charAt(0).toUpperCase() + unformattedName.substring(1).toLowerCase();
+
+    let unformattedLocation = boulder.location.toString();
+    location.innerText = unformattedLocation.charAt(0).toUpperCase() + unformattedLocation.substring(1).toLowerCase();
+
+    let unformattedGrade = boulder.grade.toString();
+    if (unformattedGrade.includes("P")) {
+        grade.innerText = unformattedGrade.substring(1,3).toUpperCase() + "+";
     } else {
-        attemptDate.innerText = boulder.attemptDate.toString().substring(0,10);
+        grade.innerText = unformattedGrade.substring(1,3).toUpperCase();
     }
-    if (boulder.completionDate == null) {
-        completionDate.innerText = "Not Completed"
+
+    let unformattedStatus = boulder.status.toString();
+    status.innerText = unformattedStatus.charAt(0).toUpperCase() + unformattedStatus.substring(1).toLowerCase();
+
+    if (boulder.attemptDate === null) {
+        attemptDate.innerText = "Not Attempted";
     } else {
-        completionDate.innerText = boulder.completionDate.toString().substring(0,10);
+        let unformattedAttemptDate = boulder.attemptDate.toString();
+        attemptDate.innerText = unformattedAttemptDate.substring(0, 4) + "/" + unformattedAttemptDate.substring(5, 7) + "/" + unformattedAttemptDate.substring(8, 10);
     }
+
+    if (boulder.completionDate === null) {
+        completionDate.innerText = "Not Completed";
+    } else {
+        let unformattedCompletionDate = boulder.completionDate.toString();
+        completionDate.innerText = unformattedCompletionDate.substring(0, 4) + "/" + unformattedCompletionDate.substring(5, 7) + "/" + unformattedCompletionDate.substring(8, 10);
+    }
+
 
     table.appendChild(row);
     row.appendChild(name);
@@ -56,6 +72,7 @@ function createRow(boulder) {
     div.appendChild(bin);
 
 }
+
 
 function createTable() {
     axios.get("/boulderApp/boulder")

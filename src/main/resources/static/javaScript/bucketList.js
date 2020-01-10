@@ -26,9 +26,10 @@ function createRow(boulder) {
     }
 
     let unformattedStatus = boulder.status.toString();
-    status.innerText = unformattedStatus.charAt(0).toUpperCase() + unformattedStatus.substring(1).toLowerCase();
+    let formattedStatus = unformattedStatus.charAt(0).toUpperCase() + unformattedStatus.substring(1).toLowerCase();
+    status.innerText = formattedStatus.split('_').join(' ');
 
-    if (unformattedStatus === "NOT ATTEMPTED") {
+    if (unformattedStatus === "NOT_ATTEMPTED") {
         status.setAttribute("id","notAttempted");
     } else if (unformattedStatus === "ATTEMPTED") {
         status.setAttribute("id","attempted");
@@ -94,4 +95,9 @@ function createTable() {
                 createRow(boulder);
             })
         }).catch(err => console.error(err));
+}
+
+function signOut() {
+    localStorage.setItem("userID","");
+    window.location = "../index.html";
 }

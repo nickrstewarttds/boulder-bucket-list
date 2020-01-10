@@ -23,7 +23,7 @@ function createRow(boulder) {
 
     name.innerText = capitaliseString(boulder.name.toString());
     location.innerText = capitaliseString(boulder.location.toString());
-    status.innerText = capitaliseString(boulder.location.toString().split("_").join(" "));
+    status.innerText = capitaliseString(boulder.status.toString().split("_").join(" "));
 
     let unformattedGrade = boulder.grade.toString();
     if (unformattedGrade.includes("P")) {

@@ -3,10 +3,6 @@ function deleteBoulder(boulderId) {
     axios.delete(url).catch(err => console.error(err));
 }
 
-function capitaliseWord(word) {
-    return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
-}
-
 function capitaliseString(str) {
     return str.replace(/\w\S*/g, function(word) { capitaliseWord(word) });
 }
@@ -27,7 +23,7 @@ function createRow(boulder) {
 
     name.innerText = capitaliseString(boulder.name.toString());
     location.innerText = capitaliseString(boulder.location.toString());
-    status.innerText = boulder.status.toString().split("_").forEach(word => { capitaliseWord(word) }).join(" ");
+    status.innerText = capitaliseString(boulder.location.toString().split("_").join(" "));
 
     let unformattedGrade = boulder.grade.toString();
     if (unformattedGrade.includes("P")) {

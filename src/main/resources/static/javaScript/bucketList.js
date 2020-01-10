@@ -1,5 +1,9 @@
+function deleteBoulder(boulderId) {
+    let url = "/boulderApp/boulder/" + boulderId;
+    axios.delete(url).catch(err => console.error(err));
+}
 function capitaliseString(str) {
-    return str.replace(/\w\S*/g, function(word) { return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase()})
+    return str.replace(/\w\S*/g, function(word) { return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase()});
 }
 
 function createRow(boulder) {
@@ -71,6 +75,9 @@ function createRow(boulder) {
     bin.setAttribute('type',"image");
     bin.setAttribute("id","delete");
     bin.setAttribute('src',"../resources/bin.png");
+    bin.addEventListener("click", () => { deleteBoulder(boulder.id.toString());
+    window.location = window.location;
+    });
 
     redbin.setAttribute('type',"image");
     redbin.setAttribute("id","deletered");

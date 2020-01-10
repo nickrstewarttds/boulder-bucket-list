@@ -1,5 +1,5 @@
 function deleteBoulder(boulderId) {
-    let url = "/boulderApp/boulder/" + boulderId;
+    let url = "http://3.11.159.169:8181/BoulderBucketList/boulderApp/boulder/" + boulderId;
     axios.delete(url).catch(err => console.error(err));
 }
 function capitaliseString(str) {

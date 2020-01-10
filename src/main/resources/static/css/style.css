@@ -124,3 +124,19 @@ td {
 #names {
     width: 200px;
 }
+
+#notAttempted {
+    background-color: #F0453B;
+}
+
+#attempted {
+    background-color: #FB9B00;
+}
+
+#completed {
+    background-color: #6B9E3A;
+}
+
+#flashed {
+    background-color: #FDCECF;
+}

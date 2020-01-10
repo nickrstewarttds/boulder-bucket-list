@@ -28,18 +28,28 @@ function createRow(boulder) {
     let unformattedStatus = boulder.status.toString();
     status.innerText = unformattedStatus.charAt(0).toUpperCase() + unformattedStatus.substring(1).toLowerCase();
 
+    if (unformattedStatus === "NOT ATTEMPTED") {
+        status.setAttribute("id","notAttempted");
+    } else if (unformattedStatus === "ATTEMPTED") {
+        status.setAttribute("id","attempted");
+    } else if (unformattedStatus === "COMPLETED") {
+        status.setAttribute("id","completed");
+    } else {
+        status.setAttribute("id","flashed");
+    }
+
     if (boulder.attemptDate === null) {
         attemptDate.innerText = "Not Attempted";
     } else {
         let unformattedAttemptDate = boulder.attemptDate.toString();
-        attemptDate.innerText = unformattedAttemptDate.substring(0, 4) + "/" + unformattedAttemptDate.substring(5, 7) + "/" + unformattedAttemptDate.substring(8, 10);
+        attemptDate.innerText = unformattedAttemptDate.substring(8,10) + "/" + unformattedAttemptDate.substring(5,7) + "/" + unformattedAttemptDate.substring(0, 4);
     }
 
     if (boulder.completionDate === null) {
         completionDate.innerText = "Not Completed";
     } else {
         let unformattedCompletionDate = boulder.completionDate.toString();
-        completionDate.innerText = unformattedCompletionDate.substring(0, 4) + "/" + unformattedCompletionDate.substring(5, 7) + "/" + unformattedCompletionDate.substring(8, 10);
+        completionDate.innerText = unformattedCompletionDate.substring(8,10) + "/" + unformattedCompletionDate.substring(5, 7) + "/" + unformattedCompletionDate.substring(0,4);
     }
 
 
@@ -75,9 +85,12 @@ function createRow(boulder) {
 
 
 function createTable() {
-    axios.get("/boulderApp/boulder")
+    let userId = localStorage.getItem("userID");
+    let url = "/userApp/user/" + userId;
+    axios.get(url)
         .then(response => {
-            response.data.forEach(boulder => {
+             // console.log(response)
+            response.data.boulders.forEach(boulder => {
                 createRow(boulder);
             })
         }).catch(err => console.error(err));

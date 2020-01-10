@@ -86,7 +86,7 @@ function createRow(boulder) {
 
 
 function createTable() {
-    let userId = localStorage.getItem("userID");
+    let userId = sessionStorage.getItem("userID");
     let url = "/userApp/user/" + userId;
     axios.get(url)
         .then(response => {
@@ -98,6 +98,6 @@ function createTable() {
 }
 
 function signOut() {
-    localStorage.setItem("userID","");
+    sessionStorage.setItem("userID","");
     window.location = "../index.html";
 }

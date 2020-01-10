@@ -1,3 +1,8 @@
+function deleteBoulder(boulderId) {
+    let url = "/boulderApp/boulder/" + boulderId;
+    axios.delete(url).catch(err => console.error(err));
+}
+
 function createRow(boulder) {
     let table = document.getElementById('boulderTable');
     let row = document.createElement('tr');
@@ -73,6 +78,9 @@ function createRow(boulder) {
     bin.setAttribute('type',"image");
     bin.setAttribute("id","delete");
     bin.setAttribute('src',"../resources/bin.png");
+    bin.addEventListener("click", () => { deleteBoulder(boulder.id.toString());
+    window.location = window.location;
+    });
 
     redbin.setAttribute('type',"image");
     redbin.setAttribute("id","deletered");

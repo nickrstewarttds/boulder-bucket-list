@@ -4,7 +4,7 @@ function deleteBoulder(boulderId) {
 }
 
 function capitaliseString(str) {
-    return str.replace(/\w\S*/g, function(word) { capitaliseWord(word) });
+    return str.replace(/\w\S*/g, function(word) { return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase() });
 }
 
 function createRow(boulder) {

@@ -85,7 +85,7 @@ function createRow(boulder) {
 
 function createTable() {
     let userId = sessionStorage.getItem("userID");
-    let url = "/userApp/user/" + userId;
+    let url = "http://3.11.159.169:8181/BoulderBucketList/userApp/user/" + userId;
     axios.get(url)
         .then(response => {
              // console.log(response)

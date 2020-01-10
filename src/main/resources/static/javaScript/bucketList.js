@@ -1,3 +1,7 @@
+function capitaliseString(str) {
+    return str.replace(/\w\S*/g, function(word) { return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase()})
+}
+
 function createRow(boulder) {
     let table = document.getElementById('boulderTable');
     let row = document.createElement('tr');
@@ -12,11 +16,9 @@ function createRow(boulder) {
     let bin = document.createElement('input');
     let redbin = document.createElement('input');
 
-    let unformattedName = boulder.name.toString();
-    name.innerText = unformattedName.charAt(0).toUpperCase() + unformattedName.substring(1).toLowerCase();
-
-    let unformattedLocation = boulder.location.toString();
-    location.innerText = unformattedLocation.charAt(0).toUpperCase() + unformattedLocation.substring(1).toLowerCase();
+    name.innerText = capitaliseString(boulder.name.toString());
+    location.innerText = capitaliseString(boulder.location.toString());
+    status.innerText = capitaliseString(boulder.status.toString());
 
     let unformattedGrade = boulder.grade.toString();
     if (unformattedGrade.includes("P")) {
@@ -25,15 +27,11 @@ function createRow(boulder) {
         grade.innerText = unformattedGrade.substring(1,3).toUpperCase();
     }
 
-    let unformattedStatus = boulder.status.toString();
-    let formattedStatus = unformattedStatus.charAt(0).toUpperCase() + unformattedStatus.substring(1).toLowerCase();
-    status.innerText = formattedStatus.split('_').join(' ');
-
-    if (unformattedStatus === "NOT_ATTEMPTED") {
+    if (status.innerText === "Not Attempted") {
         status.setAttribute("id","notAttempted");
-    } else if (unformattedStatus === "ATTEMPTED") {
+    } else if (status.innerText === "Attempted") {
         status.setAttribute("id","attempted");
-    } else if (unformattedStatus === "COMPLETED") {
+    } else if (status.innerText === "Completed") {
         status.setAttribute("id","completed");
     } else {
         status.setAttribute("id","flashed");
@@ -86,7 +84,7 @@ function createRow(boulder) {
 
 
 function createTable() {
-    let userId = localStorage.getItem("userID");
+    let userId = sessionStorage.getItem("userID");
     let url = "/userApp/user/" + userId;
     axios.get(url)
         .then(response => {
@@ -98,6 +96,6 @@ function createTable() {
 }
 
 function signOut() {
-    localStorage.setItem("userID","");
+    sessionStorage.setItem("userID","");
     window.location = "../index.html";
 }

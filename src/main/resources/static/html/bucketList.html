@@ -1,0 +1,53 @@
+<html lang="">
+
+<head>
+    <title>Bouldering Bucket List</title>
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div>
+        <button class="textButton" id="signOut" onclick="signOut()">Sign out</button>
+    </div>
+    <div class="page-heading">
+        <h1 onclick="signOut()">Bouldering Bucket List</h1>
+    </div>
+
+
+    <div>
+        <table>
+            <tbody id="boulderTable">
+                <tr>
+                    <th>
+                        Boulder name
+                    </th>
+                    <th>
+                        Location
+                    </th>
+                    <th>
+                        Grade
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Date of First Attempt
+                    </th>
+                    <th>
+                        Date of Completion
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="addButton">
+        <button class="textButton">Add a climb</button>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../javaScript/bucketList.js"></script>
+    <script>createTable()</script>
+</body>
+
+</html>

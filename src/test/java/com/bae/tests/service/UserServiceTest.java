@@ -1,6 +1,6 @@
 package com.bae.tests.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -25,66 +25,66 @@ public class UserServiceTest {
 
 	@InjectMocks
 	private UserService service;
-	
+
 	@Mock
 	private UserRepo repo;
-	
+
 	private List<User> userList;
-	
+
 	private User testUser;
-	
+
 	private User testUserWithID;
-	
+
 	final long id = 1L;
-	
+
 	@Before
 	public void init() {
 		this.userList = new ArrayList<>();
 		this.userList.add(testUser);
-		this.testUser = new User("James","password");
-		this.testUserWithID = new User(testUser.getUsername(),testUser.getPassword());
+		this.testUser = new User("James");
+		this.testUserWithID = new User(testUser.getName());
 		this.testUserWithID.setId(id);
 	}
-	
+
 	@Test
 	public void addUserTest() {
 		when(this.repo.save(testUser)).thenReturn(testUserWithID);
-		
+
 		assertEquals(this.testUserWithID, this.service.addUser(testUser));
-		
+
 		verify(this.repo, times(1)).save(this.testUser);
 	}
-	
+
 	@Test
 	public void deleteUserTest() {
 		when(this.repo.existsById(id)).thenReturn(true, false);
-		
+
 		this.service.deleteUser(id);
-		
+
 		verify(this.repo, times(1)).deleteById(id);
 		verify(this.repo, times(1)).existsById(id);
 	}
-	
+
 	@Test
 	public void findUserByIdTest() {
 		when(this.repo.findById(this.id)).thenReturn(Optional.of(this.testUserWithID));
-		
+
 		assertEquals(this.testUserWithID, this.service.findUserById(this.id));
-		
+
 		verify(this.repo, times(1)).findById(this.id);
 	}
-	
+
 	@Test
 	public void updateUserTest() {
-		User newUser = new User("Luke", "LukesPassword");
-		User updatedUser = new User(newUser.getUsername(),newUser.getPassword());
+		User newUser = new User("Luke");
+		User updatedUser = new User(newUser.getName());
 		updatedUser.setId(this.id);
-		
+
 		when(this.repo.findById(this.id)).thenReturn(Optional.of(this.testUserWithID));
 		when(this.repo.save(updatedUser)).thenReturn(updatedUser);
-		
+
 		assertEquals(updatedUser, this.service.updateUser(newUser, this.id));
-		
+
 		verify(this.repo, times(1)).findById(1L);
 		verify(this.repo, times(1)).save(updatedUser);
 	}

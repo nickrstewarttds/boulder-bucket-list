@@ -1,0 +1,142 @@
+body {
+    background-color: antiquewhite;
+    font-family: 'Orbitron', serif;
+}
+
+button {
+    font-family: 'Orbitron', serif;
+}
+
+.page-heading {
+    text-align: center;
+    margin-top: -50px;
+    font-size: large;
+}
+
+.sub-heading {
+    text-align: center;
+    padding-top: 20px;
+}
+
+form {
+    border: 3px solid #f1f1f1;
+}
+
+.textButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: auto;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    font-size: medium;
+    border-radius: 12px;
+}
+
+#signOut {
+    margin-left: 5px;
+    width: 100px;
+    font-size: small;
+    background-color: gray;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.container {
+    align-items: center;
+    width: 30%;
+    margin: auto;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: auto;
+    width: 90%;
+    background-color: white;
+}
+
+th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: auto;
+    width: 15%;
+    height: 30px;
+}
+
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: auto;
+    width: 15%;
+    height: 25px;
+    text-align: center;
+}
+
+.nameRows:hover {
+    opacity: 0.8;
+    background-color: #8ab3cc;
+}
+
+#addButton {
+    width: 200px;
+    padding-top: 100px;
+    margin: auto;
+}
+
+.updateDelete {
+    position: relative;
+}
+
+#update {
+    position: absolute;
+    right: -20px;
+    top: -17px;
+}
+
+#update:hover {
+    opacity: 0.8;
+}
+
+#deletered {
+    position: absolute;
+    right: -40px;
+    top: -17px;
+}
+
+#delete {
+    position: absolute;
+    right: -40px;
+    top: -17px;
+}
+
+#delete:hover {
+    opacity: 0;
+}
+
+.select {
+    box-sizing: border-box;
+}
+
+#names {
+    width: 200px;
+}
+
+#notAttempted {
+    background-color: #F0453B;
+}
+
+#attempted {
+    background-color: #FB9B00;
+}
+
+#completed {
+    background-color: #6B9E3A;
+}
+
+#flashed {
+    background-color: #FDCECF;
+}

@@ -41,8 +41,7 @@ public class UserService {
 
 	public User updateUser(User user, Long id) {
 		User toUpdate = findUserById(id);
-		toUpdate.setUsername(user.getUsername());
-		toUpdate.setPassword(user.getPassword());
+		toUpdate.setName(user.getName());
 		toUpdate.setBoulders(user.getBoulders());
 		return userRepo.save(toUpdate);
 	}

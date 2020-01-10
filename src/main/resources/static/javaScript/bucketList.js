@@ -2,8 +2,13 @@ function deleteBoulder(boulderId) {
     let url = "http://3.11.159.169:8181/BoulderBucketList/boulderApp/boulder/" + boulderId;
     axios.delete(url).catch(err => console.error(err));
 }
+
+function capitaliseWord(word) {
+    return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
+}
+
 function capitaliseString(str) {
-    return str.replace(/\w\S*/g, function(word) { return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase()});
+    return str.replace(/\w\S*/g, function(word) { capitaliseWord(word) });
 }
 
 function createRow(boulder) {
@@ -22,7 +27,7 @@ function createRow(boulder) {
 
     name.innerText = capitaliseString(boulder.name.toString());
     location.innerText = capitaliseString(boulder.location.toString());
-    status.innerText = capitaliseString(boulder.status.toString());
+    status.innerText = boulder.status.toString().split("_").forEach(word => { capitaliseWord(word) }).join(" ");
 
     let unformattedGrade = boulder.grade.toString();
     if (unformattedGrade.includes("P")) {

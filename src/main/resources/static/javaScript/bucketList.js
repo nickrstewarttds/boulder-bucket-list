@@ -1,5 +1,26 @@
+function updateForm() {
+    let data = document.getElementById("boulderStatus");
+    let boulderStatus = data.options[data.selectedIndex].value;
+    let attemptDate = document.getElementById("attemptDate");
+    let completionDate = document.getElementById("completionDate");
+    attemptDate.setAttribute("style","");
+    if (boulderStatus === "1") {
+        attemptDate.setAttribute("style","display: none");
+        completionDate.setAttribute("style","display: none");
+    } else if (boulderStatus === "2") {
+        attemptDate.setAttribute("style","");
+        completionDate.setAttribute("style","display: none");
+    } else if (boulderStatus === "3") {
+        attemptDate.setAttribute("style","");
+        completionDate.setAttribute("style","");
+    } else if (boulderStatus === "4") {
+        attemptDate.setAttribute("style","display: none");
+        completionDate.setAttribute("style","");
+    }
+}
+
 function deleteBoulder(boulderId) {
-    let url = "http://3.11.159.169:8181/BoulderBucketList/boulderApp/boulder/" + boulderId;
+    let url = "/boulderApp/boulder/" + boulderId;
     axios.delete(url).catch(err => console.error(err));
 }
 
@@ -93,7 +114,7 @@ function createRow(boulder) {
 
 function createTable() {
     let userId = sessionStorage.getItem("userID");
-    let url = "http://3.11.159.169:8181/BoulderBucketList/userApp/user/" + userId;
+    let url = "/userApp/user/" + userId;
     axios.get(url)
         .then(response => {
              // console.log(response)

@@ -43,7 +43,18 @@ function addBoulder() {
     } else if ( boulderStatus.value === "3" && boulderCompletionDate.value === "" ) {
         document.getElementById("missingCompletionDateErrorMessage").setAttribute("style","");
     } else {
-            let newBoulder = {
+        let newBoulder = "";
+        if ( boulderStatus.value === "3" ) {
+            newBoulder = {
+                name: boulderName.value,
+                location: boulderLocation.value,
+                grade: boulderGrade.value,
+                status: boulderStatus.value,
+                attemptDate: boulderCompletionDate.value,
+                completionDate: boulderCompletionDate.value
+            };
+        } else {
+            newBoulder = {
                 name: boulderName.value,
                 location: boulderLocation.value,
                 grade: boulderGrade.value,
@@ -51,6 +62,7 @@ function addBoulder() {
                 attemptDate: boulderAttemptDate.value,
                 completionDate: boulderCompletionDate.value
             };
+        }
 
             axios.get(url).then(response => {
                 let newJSONString = JSON.stringify(response.data).split("]").join("," + JSON.stringify(newBoulder) + "]");

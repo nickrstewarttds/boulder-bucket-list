@@ -44,13 +44,28 @@ function addBoulder() {
         document.getElementById("missingCompletionDateErrorMessage").setAttribute("style","");
     } else {
         let newBoulder = "";
-        if ( boulderStatus.value === "3" ) {
+        if ( boulderStatus.value === "0" ) {
+            newBoulder = {
+                name: boulderName.value,
+                location: boulderLocation.value,
+                grade: boulderGrade.value,
+                status: boulderStatus.value
+            };
+        } else if ( boulderStatus.value === "1" ){
             newBoulder = {
                 name: boulderName.value,
                 location: boulderLocation.value,
                 grade: boulderGrade.value,
                 status: boulderStatus.value,
-                attemptDate: boulderCompletionDate.value,
+                attemptDate: boulderAttemptDate.value
+            };
+        } else if ( boulderStatus.value === "2") {
+            newBoulder = {
+                name: boulderName.value,
+                location: boulderLocation.value,
+                grade: boulderGrade.value,
+                status: boulderStatus.value,
+                attemptDate: boulderAttemptDate.value,
                 completionDate: boulderCompletionDate.value
             };
         } else {
@@ -59,7 +74,7 @@ function addBoulder() {
                 location: boulderLocation.value,
                 grade: boulderGrade.value,
                 status: boulderStatus.value,
-                attemptDate: boulderAttemptDate.value,
+                attemptDate: boulderCompletionDate.value,
                 completionDate: boulderCompletionDate.value
             };
         }

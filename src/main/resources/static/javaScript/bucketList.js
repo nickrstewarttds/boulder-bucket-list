@@ -8,7 +8,11 @@ function resetModal() {
 }
 
 function addForm() {
-    document.getElementById("errorMessage").setAttribute("style","display: none");
+    document.getElementById("missingEntryErrorMessage").setAttribute("style","display: none");
+    document.getElementById("missingAttemptDateErrorMessage").setAttribute("style","display: none");
+    document.getElementById("missingDatesErrorMessage").setAttribute("style","display: none");
+    document.getElementById("missingCompletionDateErrorMessage").setAttribute("style","display: none");
+    document.getElementById("completionBeforeAttemptErrorMessage").setAttribute("style","display: none");
     let heading = document.getElementById("heading");
     heading.innerText = "Add a new boulder";
     resetModal();
@@ -28,7 +32,9 @@ function addBoulder() {
     } else if ( boulderStatus.value === "1" && boulderAttemptDate.value === "" ) {
         document.getElementById("missingAttemptDateErrorMessage").setAttribute("style","");
     } else if ( boulderStatus.value === "2" && ( boulderAttemptDate.value === "" || boulderCompletionDate.value === "" )) {
-        document.getElementById("errorMessage").setAttribute("style","");
+        document.getElementById("missingDatesErrorMessage").setAttribute("style","");
+    } else if ( boulderStatus.value === "2" && boulderAttemptDate.value > boulderCompletionDate.value ) {
+        document.getElementById("completionBeforeAttemptErrorMessage").setAttribute("style","");
     } else if ( boulderStatus.value === "3" ) {
         document.getElementById("missingCompletionDateErrorMessage").setAttribute("style","");
     } else {

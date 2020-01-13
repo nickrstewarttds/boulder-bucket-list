@@ -1,10 +1,31 @@
-function updateForm() {
+function resetModal() {
+    let attemptDate = document.getElementById("attemptDate");
+    let completionDate = document.getElementById("completionDate");
+    $('select').val('');
+    attemptDate.setAttribute("style","display: none");
+    completionDate.setAttribute("style","display: none");
+}
+
+function addForm() {
+    let heading = document.getElementById("heading");
+    heading.innerText = "Add a new boulder";
+    resetModal();
+}
+
+function addBoulder() {
+    let userId = sessionStorage.getItem("userID");
+    let url = "/userApp/user/" + userId;
+    let user = axios.get(url).toString();
+    console.log(user);
+}
+
+function showDates() {
     let data = document.getElementById("boulderStatus");
     let boulderStatus = data.options[data.selectedIndex].value;
     let attemptDate = document.getElementById("attemptDate");
     let completionDate = document.getElementById("completionDate");
     attemptDate.setAttribute("style","");
-    if (boulderStatus === "1") {
+    if (boulderStatus === "1" || boulderStatus === "") {
         attemptDate.setAttribute("style","display: none");
         completionDate.setAttribute("style","display: none");
     } else if (boulderStatus === "2") {
@@ -20,7 +41,7 @@ function updateForm() {
 }
 
 function deleteBoulder(boulderId) {
-    let url = "/boulderApp/boulder/" + boulderId;
+    let url = "http://3.11.159.169:8181/BoulderBucketListAdd/boulderApp/boulder/" + boulderId;
     axios.delete(url).catch(err => console.error(err));
 }
 
@@ -114,7 +135,7 @@ function createRow(boulder) {
 
 function createTable() {
     let userId = sessionStorage.getItem("userID");
-    let url = "/userApp/user/" + userId;
+    let url = "http://3.11.159.169:8181/BoulderBucketListAdd/userApp/user/" + userId;
     axios.get(url)
         .then(response => {
              // console.log(response)

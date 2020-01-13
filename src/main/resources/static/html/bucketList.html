@@ -44,16 +44,16 @@
     </div>
 
     <div id="addButton">
-        <button type="button" class="btn textButton" data-toggle="modal" data-target="#addBoulder">
+        <button type="button" class="btn textButton" data-toggle="modal" data-target="#boulderForm" onclick="addForm();">
             Add a climb
         </button>
     </div>
 
-    <div class="modal fade" id="addBoulder" tabindex="-1" role="dialog" aria-labelledby="addBoulder" aria-hidden="true">
+    <div class="modal fade" id="boulderForm" tabindex="-1" role="dialog" aria-labelledby="boulderForm" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 id="add-heading">Enter new boulder</h3>
+                    <h3 id="heading"></h3>
                 </div>
                 <div class="modal-body">
                     <form class="no-border">
@@ -97,7 +97,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="boulderStatus" class="col-sm-5 col-form-label">Status:</label>
-                            <select class="custom-select col-sm-6" id="boulderStatus" onchange="updateForm();">
+                            <select class="custom-select col-sm-6" id="boulderStatus" onchange="showDates();">
                                 <option value="" disabled selected hidden>Select the status</option>
                                 <option value="1">Not Attempted</option>
                                 <option value="2">Attempted</option>
@@ -117,15 +117,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn textButton cancel" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn textButton">Submit</button>
+                    <button type="button" class="btn textButton" onclick="addBoulder();">Submit</button>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div id="addModal" class="modal">
-        <div class="modal-content">
-            <button class="textButton" style="background-color: #F0453B" onclick="close()">Close</button>
         </div>
     </div>
 

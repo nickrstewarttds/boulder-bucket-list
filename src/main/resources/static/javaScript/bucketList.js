@@ -2,11 +2,13 @@ function resetModal() {
     let attemptDate = document.getElementById("attemptDate");
     let completionDate = document.getElementById("completionDate");
     $('select').val('');
+    $('input').val('');
     attemptDate.setAttribute("style","display: none");
     completionDate.setAttribute("style","display: none");
 }
 
 function addForm() {
+    document.getElementById("errorMessage").setAttribute("style","display: none");
     let heading = document.getElementById("heading");
     heading.innerText = "Add a new boulder";
     resetModal();
@@ -19,38 +21,50 @@ function addBoulder() {
     let boulderLocation = document.getElementById("boulderLocation");
     let boulderGrade = document.getElementById("boulderGrade");
     let boulderStatus = document.getElementById("boulderStatus");
-    let newBoulder = {
-        name: boulderName.value,
-        location: boulderLocation.value,
-        grade: boulderGrade.value,
-        status: boulderStatus.value
-    };
+    let boulderAttemptDate = document.getElementById("boulderAttemptDate");
+    let boulderCompletionDate= document.getElementById("boulderCompletionDate");
+    if ( boulderName.value === "" || boulderLocation.value === "" || boulderGrade.value === "" || boulderStatus.value === "") {
+        document.getElementById("missingEntryErrorMessage").setAttribute("style","");
+    } else if ( boulderStatus.value === "1" && boulderAttemptDate.value === "" ) {
+        document.getElementById("missingAttemptDateErrorMessage").setAttribute("style","");
+    } else if ( boulderStatus.value === "2" && ( boulderAttemptDate.value === "" || boulderCompletionDate.value === "" )) {
+        document.getElementById("errorMessage").setAttribute("style","");
+    } else if ( boulderStatus.value === "3" ) {
+        document.getElementById("missingCompletionDateErrorMessage").setAttribute("style","");
+    } else {
+            let newBoulder = {
+                name: boulderName.value,
+                location: boulderLocation.value,
+                grade: boulderGrade.value,
+                status: boulderStatus.value,
+                attemptDate: boulderAttemptDate.value,
+                completionDate: boulderCompletionDate.value
+            };
 
-    axios.get(url).
-        then(response => {
-            let newJSONString = JSON.stringify(response.data).split("]").join("," + JSON.stringify(newBoulder) + "]");
-            axios.put(url,JSON.parse(newJSONString));
-            window.location = window.location;
-        }).catch(err => console.error(err));
+            axios.get(url).then(response => {
+                let newJSONString = JSON.stringify(response.data).split("]").join("," + JSON.stringify(newBoulder) + "]");
+                axios.put(url, JSON.parse(newJSONString));
+                window.location = window.location;
+            }).catch(err => console.error(err));
+        }
 }
 
 
 function showDates() {
-    let data = document.getElementById("boulderStatus");
-    let boulderStatus = data.options[data.selectedIndex].value;
+    let boulderStatus = document.getElementById("boulderStatus").value;
     let attemptDate = document.getElementById("attemptDate");
     let completionDate = document.getElementById("completionDate");
     attemptDate.setAttribute("style","");
-    if (boulderStatus === "1" || boulderStatus === "") {
+    if (boulderStatus === "0" || boulderStatus === "") {
         attemptDate.setAttribute("style","display: none");
+        completionDate.setAttribute("style","display: none");
+    } else if (boulderStatus === "1") {
+        attemptDate.setAttribute("style","");
         completionDate.setAttribute("style","display: none");
     } else if (boulderStatus === "2") {
         attemptDate.setAttribute("style","");
-        completionDate.setAttribute("style","display: none");
-    } else if (boulderStatus === "3") {
-        attemptDate.setAttribute("style","");
         completionDate.setAttribute("style","");
-    } else if (boulderStatus === "4") {
+    } else if (boulderStatus === "3") {
         attemptDate.setAttribute("style","display: none");
         completionDate.setAttribute("style","");
     }

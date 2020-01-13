@@ -14,7 +14,7 @@ function addForm() {
 
 function addBoulder() {
     let userId = sessionStorage.getItem("userID");
-    let url = "/userApp/user/" + userId;
+    let url = "http://3.11.159.169:8181/BoulderBucketList/userApp/user/" + userId;
     let user = axios.get(url).toString();
     console.log(user);
 }

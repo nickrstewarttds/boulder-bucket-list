@@ -15,27 +15,24 @@ function addForm() {
 function addBoulder() {
     let userId = sessionStorage.getItem("userID");
     let url = "/userApp/user/" + userId;
+    let boulderName = document.getElementById("boulderName");
+    let boulderLocation = document.getElementById("boulderLocation");
+    let boulderGrade = document.getElementById("boulderGrade");
+    let boulderStatus = document.getElementById("boulderStatus");
+    let newBoulder = {
+        name: boulderName.value,
+        location: boulderLocation.value,
+        grade: boulderGrade.value,
+        status: boulderStatus.value
+    };
+
     axios.get(url).
         then(response => {
-            let newJSONString = JSON.stringify(response.data).split("]").join(createJSONString("test name","test location", "6B","not attempted"));
+            let newJSONString = JSON.stringify(response.data).split("]").join("," + JSON.stringify(newBoulder) + "]");
             axios.put(url,JSON.parse(newJSONString));
+            window.location = window.location;
         }).catch(err => console.error(err));
 }
-
-function createJSONString(name,location,grade,status) {
-    if (grade.includes("+")) {
-        grade = "_" + grade.substring(0,2) + ("P");
-    } else {
-        grade = "_" + grade;
-    }
-    if (status.includes(" ")) {
-        status = status.toUpperCase().split(" ").join("_");
-    } else {
-        status = status.toUpperCase();
-    }
-    return `,{"name":"${name}","location":"${location}","grade":"${grade}","status":"${status}"}]`;
-}
-
 
 
 function showDates() {

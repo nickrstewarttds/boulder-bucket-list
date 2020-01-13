@@ -14,10 +14,29 @@ function addForm() {
 
 function addBoulder() {
     let userId = sessionStorage.getItem("userID");
-    let url = "http://3.11.159.169:8181/BoulderBucketList/userApp/user/" + userId;
-    let user = axios.get(url).toString();
-    console.log(user);
+    let url = "/userApp/user/" + userId;
+    axios.get(url).
+        then(response => {
+            let newJSONString = JSON.stringify(response.data).split("]").join(createJSONString("test name","test location", "6B","not attempted"));
+            axios.put(url,JSON.parse(newJSONString));
+        }).catch(err => console.error(err));
 }
+
+function createJSONString(name,location,grade,status) {
+    if (grade.includes("+")) {
+        grade = "_" + grade.substring(0,2) + ("P");
+    } else {
+        grade = "_" + grade;
+    }
+    if (status.includes(" ")) {
+        status = status.toUpperCase().split(" ").join("_");
+    } else {
+        status = status.toUpperCase();
+    }
+    return `,{"name":"${name}","location":"${location}","grade":"${grade}","status":"${status}"}]`;
+}
+
+
 
 function showDates() {
     let data = document.getElementById("boulderStatus");
@@ -41,7 +60,7 @@ function showDates() {
 }
 
 function deleteBoulder(boulderId) {
-    let url = "http://3.11.159.169:8181/BoulderBucketListAdd/boulderApp/boulder/" + boulderId;
+    let url = "/boulderApp/boulder/" + boulderId;
     axios.delete(url).catch(err => console.error(err));
 }
 
@@ -135,7 +154,7 @@ function createRow(boulder) {
 
 function createTable() {
     let userId = sessionStorage.getItem("userID");
-    let url = "http://3.11.159.169:8181/BoulderBucketListAdd/userApp/user/" + userId;
+    let url = "/userApp/user/" + userId;
     axios.get(url)
         .then(response => {
              // console.log(response)

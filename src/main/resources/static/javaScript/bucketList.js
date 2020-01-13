@@ -35,7 +35,7 @@ function addBoulder() {
         document.getElementById("missingDatesErrorMessage").setAttribute("style","");
     } else if ( boulderStatus.value === "2" && boulderAttemptDate.value > boulderCompletionDate.value ) {
         document.getElementById("completionBeforeAttemptErrorMessage").setAttribute("style","");
-    } else if ( boulderStatus.value === "3" ) {
+    } else if ( boulderStatus.value === "3" && boulderCompletionDate.value === "" ) {
         document.getElementById("missingCompletionDateErrorMessage").setAttribute("style","");
     } else {
             let newBoulder = {

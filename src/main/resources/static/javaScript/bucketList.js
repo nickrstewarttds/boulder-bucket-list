@@ -20,7 +20,7 @@ function addForm() {
 
 function addBoulder() {
     let userId = sessionStorage.getItem("userID");
-    let url = "/userApp/user/" + userId;
+    let url = "http://3.11.159.169:8181/BoulderBucketListAdd/userApp/user/" + userId;
     let boulderName = document.getElementById("boulderName");
     let boulderLocation = document.getElementById("boulderLocation");
     let boulderGrade = document.getElementById("boulderGrade");
@@ -77,7 +77,7 @@ function showDates() {
 }
 
 function deleteBoulder(boulderId) {
-    let url = "/boulderApp/boulder/" + boulderId;
+    let url = "http://3.11.159.169:8181/BoulderBucketListAdd/boulderApp/boulder/" + boulderId;
     axios.delete(url).catch(err => console.error(err));
 }
 
@@ -171,7 +171,7 @@ function createRow(boulder) {
 
 function createTable() {
     let userId = sessionStorage.getItem("userID");
-    let url = "/userApp/user/" + userId;
+    let url = "http://3.11.159.169:8181/BoulderBucketListAdd/userApp/user/" + userId;
     axios.get(url)
         .then(response => {
              // console.log(response)

@@ -186,9 +186,10 @@ function createRow(boulder) {
     bin.setAttribute('type',"image");
     bin.setAttribute("id","delete");
     bin.setAttribute('src',"../resources/bin.png");
-    bin.addEventListener("click", () => { deleteBoulder(boulder.id.toString());
-    window.location = window.location;
-    });
+    bin.addEventListener("click",() => {let result = confirm('Delete the boulder?');
+                      if (result) { deleteBoulder(boulder.id.toString());
+                    window.location = window.location;}});
+
 
     redbin.setAttribute('type',"image");
     redbin.setAttribute("id","deletered");

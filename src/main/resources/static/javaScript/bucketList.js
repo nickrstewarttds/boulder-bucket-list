@@ -8,17 +8,22 @@ function resetModal() {
 }
 
 function addForm() {
-    document.getElementById("missingEntryErrorMessage").setAttribute("style","display: none");
-    document.getElementById("missingAttemptDateErrorMessage").setAttribute("style","display: none");
-    document.getElementById("missingDatesErrorMessage").setAttribute("style","display: none");
-    document.getElementById("missingCompletionDateErrorMessage").setAttribute("style","display: none");
-    document.getElementById("completionBeforeAttemptErrorMessage").setAttribute("style","display: none");
+    hideErrorMessages();
     let heading = document.getElementById("heading");
     heading.innerText = "Add a new boulder";
     resetModal();
 }
 
+function hideErrorMessages() {
+    document.getElementById("missingEntryErrorMessage").setAttribute("style","display: none");
+    document.getElementById("missingAttemptDateErrorMessage").setAttribute("style","display: none");
+    document.getElementById("missingDatesErrorMessage").setAttribute("style","display: none");
+    document.getElementById("missingCompletionDateErrorMessage").setAttribute("style","display: none");
+    document.getElementById("completionBeforeAttemptErrorMessage").setAttribute("style","display: none");
+}
+
 function addBoulder() {
+    hideErrorMessages();
     let userId = sessionStorage.getItem("userID");
     let url = "http://3.11.159.169:8181/BoulderBucketListAdd/userApp/user/" + userId;
     let boulderName = document.getElementById("boulderName");

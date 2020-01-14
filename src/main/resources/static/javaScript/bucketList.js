@@ -1,5 +1,119 @@
+function resetModal() {
+    let attemptDate = document.getElementById("attemptDate");
+    let completionDate = document.getElementById("completionDate");
+    $('select').val('');
+    $('input').val('');
+    attemptDate.setAttribute("style","display: none");
+    completionDate.setAttribute("style","display: none");
+}
+
+function addForm() {
+    hideErrorMessages();
+    let heading = document.getElementById("heading");
+    heading.innerText = "Add a new boulder";
+    resetModal();
+}
+
+function hideErrorMessages() {
+    document.getElementById("missingEntryErrorMessage").setAttribute("style","display: none");
+    document.getElementById("missingAttemptDateErrorMessage").setAttribute("style","display: none");
+    document.getElementById("missingDatesErrorMessage").setAttribute("style","display: none");
+    document.getElementById("missingCompletionDateErrorMessage").setAttribute("style","display: none");
+    document.getElementById("completionBeforeAttemptErrorMessage").setAttribute("style","display: none");
+}
+
+function addBoulder() {
+    hideErrorMessages();
+    let userId = sessionStorage.getItem("userID");
+    let url = "/BoulderBucketListAdd/userApp/user/" + userId;
+    let boulderName = document.getElementById("boulderName");
+    let boulderLocation = document.getElementById("boulderLocation");
+    let boulderGrade = document.getElementById("boulderGrade");
+    let boulderStatus = document.getElementById("boulderStatus");
+    let boulderAttemptDate = document.getElementById("boulderAttemptDate");
+    let boulderCompletionDate= document.getElementById("boulderCompletionDate");
+    if ( boulderName.value === "" || boulderLocation.value === "" || boulderGrade.value === "" || boulderStatus.value === "") {
+        document.getElementById("missingEntryErrorMessage").setAttribute("style","");
+    } else if ( boulderStatus.value === "1" && boulderAttemptDate.value === "" ) {
+        document.getElementById("missingAttemptDateErrorMessage").setAttribute("style","");
+    } else if ( boulderStatus.value === "2" && ( boulderAttemptDate.value === "" || boulderCompletionDate.value === "" )) {
+        document.getElementById("missingDatesErrorMessage").setAttribute("style","");
+    } else if ( boulderStatus.value === "2" && boulderAttemptDate.value > boulderCompletionDate.value ) {
+        document.getElementById("completionBeforeAttemptErrorMessage").setAttribute("style","");
+    } else if ( boulderStatus.value === "3" && boulderCompletionDate.value === "" ) {
+        document.getElementById("missingCompletionDateErrorMessage").setAttribute("style","");
+    } else {
+        let newBoulder = "";
+        if ( boulderStatus.value === "0" ) {
+            newBoulder = {
+                name: boulderName.value,
+                location: boulderLocation.value,
+                grade: boulderGrade.value,
+                status: boulderStatus.value
+            };
+        } else if ( boulderStatus.value === "1" ){
+            newBoulder = {
+                name: boulderName.value,
+                location: boulderLocation.value,
+                grade: boulderGrade.value,
+                status: boulderStatus.value,
+                attemptDate: boulderAttemptDate.value
+            };
+        } else if ( boulderStatus.value === "2") {
+            newBoulder = {
+                name: boulderName.value,
+                location: boulderLocation.value,
+                grade: boulderGrade.value,
+                status: boulderStatus.value,
+                attemptDate: boulderAttemptDate.value,
+                completionDate: boulderCompletionDate.value
+            };
+        } else {
+            newBoulder = {
+                name: boulderName.value,
+                location: boulderLocation.value,
+                grade: boulderGrade.value,
+                status: boulderStatus.value,
+                attemptDate: boulderCompletionDate.value,
+                completionDate: boulderCompletionDate.value
+            };
+        }
+            axios.get(url).then(response => {
+                let JSONString = JSON.stringify(response.data);
+                if (JSONString.includes("[]")) {
+                    JSONString = JSONString.split("[]").join("[" + JSON.stringify(newBoulder) + "]");
+                } else {
+                    JSONString = JSONString.split("]").join("," + JSON.stringify(newBoulder) + "]");
+                }
+                axios.put(url, JSON.parse(JSONString));
+                window.location = window.location;
+            }).catch(err => console.error(err));
+        }
+}
+
+
+function showDates() {
+    let boulderStatus = document.getElementById("boulderStatus").value;
+    let attemptDate = document.getElementById("attemptDate");
+    let completionDate = document.getElementById("completionDate");
+    attemptDate.setAttribute("style","");
+    if (boulderStatus === "0" || boulderStatus === "") {
+        attemptDate.setAttribute("style","display: none");
+        completionDate.setAttribute("style","display: none");
+    } else if (boulderStatus === "1") {
+        attemptDate.setAttribute("style","");
+        completionDate.setAttribute("style","display: none");
+    } else if (boulderStatus === "2") {
+        attemptDate.setAttribute("style","");
+        completionDate.setAttribute("style","");
+    } else if (boulderStatus === "3") {
+        attemptDate.setAttribute("style","display: none");
+        completionDate.setAttribute("style","");
+    }
+}
+
 function deleteBoulder(boulderId) {
-    let url = "http://3.11.159.169:8181/BoulderBucketList/boulderApp/boulder/" + boulderId;
+    let url = "/BoulderBucketListAdd/boulderApp/boulder/" + boulderId;
     axios.delete(url).catch(err => console.error(err));
 }
 
@@ -76,9 +190,10 @@ function createRow(boulder) {
     bin.setAttribute('type',"image");
     bin.setAttribute("id","delete");
     bin.setAttribute('src',"../resources/bin.png");
-    bin.addEventListener("click", () => { deleteBoulder(boulder.id.toString());
-    window.location = window.location;
-    });
+    bin.addEventListener("click",() => {let result = confirm('Delete the boulder?');
+                      if (result) { deleteBoulder(boulder.id.toString());
+                    window.location = window.location;}});
+
 
     redbin.setAttribute('type',"image");
     redbin.setAttribute("id","deletered");
@@ -93,7 +208,7 @@ function createRow(boulder) {
 
 function createTable() {
     let userId = sessionStorage.getItem("userID");
-    let url = "http://3.11.159.169:8181/BoulderBucketList/userApp/user/" + userId;
+    let url = "/BoulderBucketListAdd/userApp/user/" + userId;
     axios.get(url)
         .then(response => {
              // console.log(response)

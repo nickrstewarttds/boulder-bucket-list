@@ -78,10 +78,14 @@ function addBoulder() {
                 completionDate: boulderCompletionDate.value
             };
         }
-
             axios.get(url).then(response => {
-                let newJSONString = JSON.stringify(response.data).split("]").join("," + JSON.stringify(newBoulder) + "]");
-                axios.put(url, JSON.parse(newJSONString));
+                let JSONString = JSON.stringify(response.data);
+                if (JSONString.includes("[]")) {
+                    JSONString = JSONString.split("[]").join("[" + JSON.stringify(newBoulder) + "]");
+                } else {
+                    JSONString = JSONString.split("]").join("," + JSON.stringify(newBoulder) + "]");
+                }
+                axios.put(url, JSON.parse(JSONString));
                 window.location = window.location;
             }).catch(err => console.error(err));
         }

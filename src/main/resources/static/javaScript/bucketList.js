@@ -61,6 +61,8 @@ function resetModal() {
 function addForm() {
     hideErrorMessages();
     resetModal();
+    boulderAttemptDate.max = new Date().toISOString().split("T")[0];
+    boulderCompletionDate.max = new Date().toISOString().split("T")[0];
     document.getElementById("submitButton").setAttribute("onclick","addBoulder();");
     let heading = document.getElementById("heading");
     heading.innerText = "Add a new boulder";
@@ -118,8 +120,8 @@ function submitBoulder() {
         document.getElementById("completionBeforeAttemptErrorMessage").setAttribute("style","");
         sessionStorage.setItem("success","false");
     } else if ( boulderStatus.value === "3" && boulderCompletionDate.value === "" ) {
-        document.getElementById("missingCompletionDateErrorMessage").setAttribute("style","");
-        sessionStorage.setItem("success","false");
+        document.getElementById("missingCompletionDateErrorMessage").setAttribute("style", "");
+        sessionStorage.setItem("success", "false");
     } else {
         if (boulderStatus.value === "0") {
             return {
@@ -267,6 +269,8 @@ function createRow(boulder) {
     pencil.setAttribute("data-target","#boulderForm");
     pencil.addEventListener("click",() => {sessionStorage.setItem("boulderID",boulder.id.toString());
                             updateForm();
+                            boulderAttemptDate.max = new Date().toISOString().split("T")[0];
+                            boulderCompletionDate.max = new Date().toISOString().split("T")[0];
                             });
 
     bin.setAttribute('type',"image");
@@ -289,12 +293,11 @@ function createRow(boulder) {
 }
 
 
-
-
 function signOut() {
     sessionStorage.setItem("userID","");
     window.location = "../index.html";
 }
+
 
 function gradeConverter(grade) {
     switch (grade) {

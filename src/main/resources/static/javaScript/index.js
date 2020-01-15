@@ -1,5 +1,5 @@
 function makeUsersTable() {
-    axios.get("BoulderBucketListAdd/userApp/user")
+    axios.get("/BoulderBucketListAdd/userApp/user")
         .then(response => {
             response.data.forEach(user => {
                 let table = document.getElementById('names');

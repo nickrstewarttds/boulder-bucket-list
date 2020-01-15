@@ -18,27 +18,29 @@
 
     <div>
         <table>
+            <thead>
+            <tr>
+                <th>
+                    Boulder name
+                </th>
+                <th>
+                    Location
+                </th>
+                <th>
+                    Grade
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Date of First Attempt
+                </th>
+                <th>
+                    Date of Completion
+                </th>
+            </tr>
+            </thead>
             <tbody id="boulderTable">
-                <tr>
-                    <th>
-                        Boulder name
-                    </th>
-                    <th>
-                        Location
-                    </th>
-                    <th>
-                        Grade
-                    </th>
-                    <th>
-                        Status
-                    </th>
-                    <th>
-                        Date of First Attempt
-                    </th>
-                    <th>
-                        Date of Completion
-                    </th>
-                </tr>
             </tbody>
         </table>
     </div>
@@ -132,7 +134,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn textButton cancel" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn textButton" onclick="addBoulder();">Submit</button>
+                    <button type="button" class="btn textButton" onclick="addBoulder();" id="submitButton">Submit</button>
                 </div>
             </div>
         </div>

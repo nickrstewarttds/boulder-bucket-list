@@ -97,8 +97,6 @@ function hideErrorMessages() {
 }
 
 
-
-
 function submitBoulder() {
     sessionStorage.setItem("success","true");
     let boulderName = document.getElementById("boulderName");
@@ -186,7 +184,6 @@ function showDates() {
         completionDate.setAttribute("style","");
     }
 }
-
 
 
 function capitaliseString(str) {
@@ -288,8 +285,6 @@ function createRow(boulder) {
     div.appendChild(pencil);
     div.appendChild(redbin);
     div.appendChild(bin);
-
-
 }
 
 

@@ -44,9 +44,11 @@ function updateBoulder() {
     }
 }
 
-function deleteBoulder(boulderId) {
+function deleteBoulder() {
+    let boulderId = sessionStorage.getItem("boulderID");
     let url = urlPre + "/boulderApp/boulder/" + boulderId;
     axios.delete(url).catch(err => console.error(err));
+    window.location = window.location;
 }
 
 function resetModal() {
@@ -85,6 +87,13 @@ function updateForm() {
     document.getElementById("boulderAttemptDate").value = dateConverter(document.getElementById("attemptDate" + boulderID).innerText);
     document.getElementById("boulderCompletionDate").value = dateConverter(document.getElementById("completionDate" + boulderID).innerText);
     showDates();
+}
+
+function deleteForm() {
+    let boulderID = sessionStorage.getItem("boulderID");
+    let heading = document.getElementById("deleteHeading");
+    let name = document.getElementById("name" + boulderID).innerText;
+    heading.innerText = "Deleting " + name;
 }
 
 
@@ -264,18 +273,22 @@ function createRow(boulder) {
     pencil.setAttribute('src',"../resources/pencil.png");
     pencil.setAttribute("data-toggle","modal");
     pencil.setAttribute("data-target","#boulderForm");
-    pencil.addEventListener("click",() => {sessionStorage.setItem("boulderID",boulder.id.toString());
-                            updateForm();
-                            boulderAttemptDate.max = new Date().toISOString().split("T")[0];
-                            boulderCompletionDate.max = new Date().toISOString().split("T")[0];
-                            });
+    pencil.addEventListener("click",() => {
+        sessionStorage.setItem("boulderID",boulder.id.toString());
+        updateForm();
+        boulderAttemptDate.max = new Date().toISOString().split("T")[0];
+        boulderCompletionDate.max = new Date().toISOString().split("T")[0];
+        });
 
     bin.setAttribute('type',"image");
     bin.setAttribute("id","delete");
     bin.setAttribute('src',"../resources/bin.png");
-    bin.addEventListener("click",() => {let result = confirm('Delete the boulder?');
-                      if (result) { deleteBoulder(boulder.id.toString());
-                    window.location = window.location;}});
+    bin.setAttribute("data-toggle","modal");
+    bin.setAttribute("data-target","#confirmDelete");
+    bin.addEventListener("click",() => {
+        sessionStorage.setItem("boulderID",boulder.id.toString());
+        deleteForm();
+    });
 
 
     redbin.setAttribute('type',"image");

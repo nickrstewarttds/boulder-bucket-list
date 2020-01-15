@@ -350,7 +350,7 @@ function gradeConverter(grade) {
 
 function statusConverter(status) {
     switch (status) {
-        case "Not attempted":
+        case "Not Attempted":
             return 0;
         case "Attempted":
             return 1;

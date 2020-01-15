@@ -1,3 +1,54 @@
+let urlPre ="/BoulderBucketListAdd";
+
+function createTable() {
+    let userId = sessionStorage.getItem("userID");
+    let url = urlPre + "/userApp/user/" + userId;
+    axios.get(url)
+        .then(response => {
+            response.data.boulders.forEach(boulder => {
+                createRow(boulder);
+            })
+        }).catch(err => console.error(err));
+}
+
+function addBoulder() {
+    hideErrorMessages();
+    let userId = sessionStorage.getItem("userID");
+    let url = urlPre + "/userApp/user/" + userId;
+    let newBoulder = submitBoulder();
+
+    axios.get(url).then(response => {
+        let JSONString = JSON.stringify(response.data);
+        if (JSONString.includes("[]")) {
+            JSONString = JSONString.split("[]").join("[" + JSON.stringify(newBoulder) + "]");
+        } else {
+            JSONString = JSONString.split("]").join("," + JSON.stringify(newBoulder) + "]");
+        }
+        axios.put(url, JSON.parse(JSONString));
+        if (sessionStorage.getItem("success") === "true") {
+            window.location = window.location;
+        }
+    }).catch(err => console.error(err));
+
+}
+
+function updateBoulder() {
+    hideErrorMessages();
+    let boulderID = sessionStorage.getItem("boulderID");
+    let url = urlPre + "/boulderApp/boulder/" + boulderID;
+    let updatedBoulder = submitBoulder();
+
+    axios.put(url,updatedBoulder);
+    if (sessionStorage.getItem("success") === "true") {
+        window.location = window.location;
+    }
+}
+
+function deleteBoulder(boulderId) {
+    let url = urlPre + "/boulderApp/boulder/" + boulderId;
+    axios.delete(url).catch(err => console.error(err));
+}
+
 function resetModal() {
     let attemptDate = document.getElementById("attemptDate");
     let completionDate = document.getElementById("completionDate");
@@ -34,6 +85,7 @@ function updateForm() {
     showDates();
 }
 
+
 function hideErrorMessages() {
     document.getElementById("missingEntryErrorMessage").setAttribute("style","display: none");
     document.getElementById("missingAttemptDateErrorMessage").setAttribute("style","display: none");
@@ -42,38 +94,8 @@ function hideErrorMessages() {
     document.getElementById("completionBeforeAttemptErrorMessage").setAttribute("style","display: none");
 }
 
-function addBoulder() {
-    hideErrorMessages();
-    let userId = sessionStorage.getItem("userID");
-    let url = "/userApp/user/" + userId;
-    let newBoulder = submitBoulder();
 
-    axios.get(url).then(response => {
-        let JSONString = JSON.stringify(response.data);
-        if (JSONString.includes("[]")) {
-            JSONString = JSONString.split("[]").join("[" + JSON.stringify(newBoulder) + "]");
-        } else {
-            JSONString = JSONString.split("]").join("," + JSON.stringify(newBoulder) + "]");
-        }
-        axios.put(url, JSON.parse(JSONString));
-        if (sessionStorage.getItem("success") === "true") {
-            window.location = window.location;
-        }
-    }).catch(err => console.error(err));
 
-}
-
-function updateBoulder() {
-    hideErrorMessages();
-    let boulderID = sessionStorage.getItem("boulderID");
-    let url = "/boulderApp/boulder/" + boulderID;
-    let updatedBoulder = submitBoulder();
-
-    axios.put(url,updatedBoulder);
-    if (sessionStorage.getItem("success") === "true") {
-        window.location = window.location;
-    }
-}
 
 function submitBoulder() {
     sessionStorage.setItem("success","true");
@@ -163,10 +185,7 @@ function showDates() {
     }
 }
 
-function deleteBoulder(boulderId) {
-    let url = "/boulderApp/boulder/" + boulderId;
-    axios.delete(url).catch(err => console.error(err));
-}
+
 
 function capitaliseString(str) {
     return str.replace(/\w\S*/g, function(word) { return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase() });
@@ -270,16 +289,7 @@ function createRow(boulder) {
 }
 
 
-function createTable() {
-    let userId = sessionStorage.getItem("userID");
-    let url = "/userApp/user/" + userId;
-    axios.get(url)
-        .then(response => {
-            response.data.boulders.forEach(boulder => {
-                createRow(boulder);
-            })
-        }).catch(err => console.error(err));
-}
+
 
 function signOut() {
     sessionStorage.setItem("userID","");

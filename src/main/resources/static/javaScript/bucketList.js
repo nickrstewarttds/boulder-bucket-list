@@ -56,7 +56,9 @@ function addBoulder() {
             JSONString = JSONString.split("]").join("," + JSON.stringify(newBoulder) + "]");
         }
         axios.put(url, JSON.parse(JSONString));
-        window.location = window.location;
+        if (sessionStorage.getItem("success") === "true") {
+            window.location = window.location;
+        }
     }).catch(err => console.error(err));
 
 }
@@ -68,10 +70,13 @@ function updateBoulder() {
     let updatedBoulder = submitBoulder();
 
     axios.put(url,updatedBoulder);
-    window.location = window.location;
+    if (sessionStorage.getItem("success") === "true") {
+        window.location = window.location;
+    }
 }
 
 function submitBoulder() {
+    sessionStorage.setItem("success","true");
     let boulderName = document.getElementById("boulderName");
     let boulderLocation = document.getElementById("boulderLocation");
     let boulderGrade = document.getElementById("boulderGrade");
@@ -80,34 +85,39 @@ function submitBoulder() {
     let boulderCompletionDate= document.getElementById("boulderCompletionDate");
     if ( boulderName.value === "" || boulderLocation.value === "" || boulderGrade.value === "" || boulderStatus.value === "") {
         document.getElementById("missingEntryErrorMessage").setAttribute("style","");
-    } else if ( boulderStatus.value === "Attempted" && boulderAttemptDate.value === "" ) {
+        sessionStorage.setItem("success","false");
+    } else if ( boulderStatus.value === "1" && boulderAttemptDate.value === "" ) {
         document.getElementById("missingAttemptDateErrorMessage").setAttribute("style","");
-    } else if ( boulderStatus.value === "Completed" && ( boulderAttemptDate.value === "" || boulderCompletionDate.value === "" )) {
+        sessionStorage.setItem("success","false");
+    } else if ( boulderStatus.value === "2" && ( boulderAttemptDate.value === "" || boulderCompletionDate.value === "" )) {
         document.getElementById("missingDatesErrorMessage").setAttribute("style","");
-    } else if ( boulderStatus.value === "Completed" && boulderAttemptDate.value > boulderCompletionDate.value ) {
+        sessionStorage.setItem("success","false");
+    } else if ( boulderStatus.value === "2" && boulderAttemptDate.value > boulderCompletionDate.value ) {
         document.getElementById("completionBeforeAttemptErrorMessage").setAttribute("style","");
-    } else if ( boulderStatus.value === "Flashed" && boulderCompletionDate.value === "" ) {
+        sessionStorage.setItem("success","false");
+    } else if ( boulderStatus.value === "3" && boulderCompletionDate.value === "" ) {
         document.getElementById("missingCompletionDateErrorMessage").setAttribute("style","");
+        sessionStorage.setItem("success","false");
     } else {
-        if (boulderStatus.value === "Not attempted") {
+        if (boulderStatus.value === "0") {
             return {
                 name: boulderName.value,
                 location: boulderLocation.value,
                 grade: boulderGrade.value,
                 status: boulderStatus.value,
-                attemptDate: "null",
-                completionDate: "null"
+                attemptDate: null,
+                completionDate: null
             };
-        } else if (boulderStatus.value === "Attempted") {
+        } else if (boulderStatus.value === "1") {
             return {
                 name: boulderName.value,
                 location: boulderLocation.value,
                 grade: boulderGrade.value,
                 status: boulderStatus.value,
                 attemptDate: boulderAttemptDate.value,
-                completionDate: "null"
+                completionDate: null
             };
-        } else if (boulderStatus.value === "Completed") {
+        } else if (boulderStatus.value === "2") {
             return {
                 name: boulderName.value,
                 location: boulderLocation.value,
@@ -116,7 +126,7 @@ function submitBoulder() {
                 attemptDate: boulderAttemptDate.value,
                 completionDate: boulderCompletionDate.value
             };
-        } else {
+        } else if (boulderStatus.value === "3") {
             return {
                 name: boulderName.value,
                 location: boulderLocation.value,

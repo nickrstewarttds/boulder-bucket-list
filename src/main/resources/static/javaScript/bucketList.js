@@ -312,15 +312,41 @@ function sortTable(n) {
             shouldSwitch = false;
             x = rows[i].getElementsByTagName("td")[n];
             y = rows[i+1].getElementsByTagName("td")[n];
-            if (dir == "asc") {
-                if (x.innerText.toLowerCase() > y.innerText.toLowerCase()) {
-                    shouldSwitch = true;
-                    break;
+            if ( n === 0 || n === 1 || n === 2 ) {
+                if (dir === "asc") {
+                    if (x.innerText > y.innerText) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir === "desc") {
+                    if (x.innerText < y.innerText) {
+                        shouldSwitch = true;
+                        break;
+                    }
                 }
-            } else if (dir = "desc") {
-                if (x.innerText.toLowerCase() < y.innerText.toLowerCase()) {
-                    shouldSwitch = true;
-                    break;
+            } else if ( n ===  3 ) {
+                if (dir === "asc") {
+                    if (statusConverter(x.innerText) > statusConverter(y.innerText)) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir === "desc") {
+                    if (statusConverter(x.innerText) < statusConverter(y.innerText)) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            } else if ( n === 4 || n === 5 ) {
+                if (dir === "asc") {
+                    if (dateConverter(x.innerText) > dateConverter(y.innerText)) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir === "desc") {
+                    if (dateConverter(x.innerText) < dateConverter(y.innerText)) {
+                        shouldSwitch = true;
+                        break;
+                    }
                 }
             }
         }
@@ -329,7 +355,7 @@ function sortTable(n) {
             switching = true;
             switchcount ++;
         } else {
-            if (switchcount == 0 && dir == "asc") {
+            if (switchcount === 0 && dir === "asc") {
                 dir = "desc";
                 switching = true;
             }

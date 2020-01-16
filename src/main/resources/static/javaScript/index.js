@@ -18,3 +18,17 @@ function makeUsersTable() {
             });
         }).catch(err => console.error(err));
 }
+
+function addUser() {
+    let name = document.getElementById("userName");
+    let user = {
+        "name":name.value,
+        "boulders":[]
+    }
+    axios.post("/userApp/user",user);
+    window.location = window.location;
+}
+
+function resetAddModal() {
+    document.getElementById("userName").value="";
+}

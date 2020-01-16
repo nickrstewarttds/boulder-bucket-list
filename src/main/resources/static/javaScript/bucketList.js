@@ -51,6 +51,13 @@ function deleteBoulder() {
     window.location = window.location;
 }
 
+function deleteUser() {
+    let userID = sessionStorage.getItem("userID");
+    let url = urlPre + "/userApp/user/" + userID;
+    axios.delete(url).catch(err => console.error(err));
+    signOut();
+}
+
 function resetModal() {
     let attemptDate = document.getElementById("attemptDate");
     let completionDate = document.getElementById("completionDate");
@@ -372,6 +379,14 @@ function sortTable(n) {
     }
 }
 
+function showUserInfo() {
+    let userId = sessionStorage.getItem("userID");
+    let url = urlPre + "/userApp/user/" + userId;
+    axios.get(url).then(response => {
+        document.getElementById("userInfo").innerText = capitaliseString(response.data.name);
+        document.getElementById("deleteUserHeading").innerText = "Deleting user " + capitaliseString(response.data.name);
+        })
+}
 
 function signOut() {
     sessionStorage.setItem("userID","");

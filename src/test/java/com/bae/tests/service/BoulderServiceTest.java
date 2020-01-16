@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import com.bae.exceptions.BoulderNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,18 +43,14 @@ public class BoulderServiceTest {
 
 	private Boulder testBoulderWithID;
 
-	private Date testAttemptDate;
-
-	private Date testCompletionDate;
-
-	private Date testBadAttemptDate;
-
 	final long id = 1L;
+
+	final long badID = 2L;
 
 	@Before
 	public void init() {
-		this.testAttemptDate = new Date(2001 - 01 - 01);
-		this.testCompletionDate = new Date(2001 - 01 - 01);
+		Date testAttemptDate = new Date(2001 - 1 - 1);
+		Date testCompletionDate = new Date(2001 - 1 - 1);
 		this.boulderList = new ArrayList<>();
 		this.boulderList.add(testBoulder);
 		this.testBoulder = new Boulder("testName", "testLocation", Grade._5A, Status.COMPLETED, testAttemptDate,
@@ -61,6 +58,13 @@ public class BoulderServiceTest {
 		this.testBoulderWithID = new Boulder(testBoulder.getName(), testBoulder.getLocation(), testBoulder.getGrade(),
 				testBoulder.getStatus(), testBoulder.getAttemptDate(), testBoulder.getCompletionDate());
 		this.testBoulderWithID.setId(id);
+	}
+
+	@Test
+	public void getAllBouldersTest() {
+		when(this.repo.findAll()).thenReturn(this.boulderList);
+
+		assertEquals(this.boulderList, this.service.getAllBoulders());
 	}
 
 	@Test
@@ -80,6 +84,11 @@ public class BoulderServiceTest {
 
 		verify(this.repo, times(1)).deleteById(id);
 		verify(this.repo, times(1)).existsById(id);
+	}
+
+	@Test(expected = BoulderNotFoundException.class)
+	public void deleteBoulderBadIDTest() {
+		this.service.deleteBoulder(badID);
 	}
 
 	@Test
@@ -122,17 +131,13 @@ public class BoulderServiceTest {
 		fail();
 	}
 
-	@Test
+	@Test(expected = InvalidDatesException.class)
 	public void attemptAfterCompletionTest() {
-		this.testBadAttemptDate = new Date(2002 - 01 - 01);
+		Date testBadAttemptDate = new Date(2002 - 1 - 1);
 		this.testBoulderWithID.setAttemptDate(testBadAttemptDate);
 		when(this.repo.save(testBoulder)).thenReturn(testBoulderWithID);
-		try {
-			this.service.addBoulder(testBoulderWithID);
-		} catch (InvalidDatesException e) {
-			return;
-		}
-		fail();
+
+		this.service.addBoulder(testBoulderWithID);
 	}
 
 	@Test

@@ -91,6 +91,22 @@ td {
     text-align: center;
 }
 
+.sortIcons {
+    position: relative;
+}
+
+.sortUp {
+    position: absolute;
+    top: -25px;
+    right: 5px;
+}
+
+.sortDown {
+    position: absolute;
+    top: -15px;
+    right: 5px;
+}
+
 .nameRows:hover {
     opacity: 0.8;
     background-color: #8ab3cc;

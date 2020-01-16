@@ -354,6 +354,15 @@ function sortTable(n) {
             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
             switching = true;
             switchcount ++;
+            for ( i = 0; i < 6; i++) {
+                document.getElementsByClassName("sortUp")[i].innerHTML = "&#9653;";
+                document.getElementsByClassName("sortDown")[i].innerHTML = "&#9663;";
+            }
+            if ( dir === "asc") {
+                document.getElementsByClassName("sortUp")[n].innerHTML = "&#9652;";
+            } else if ( dir === "desc") {
+                document.getElementsByClassName("sortDown")[n].innerHTML = "&#9662;";
+            }
         } else {
             if (switchcount === 0 && dir === "asc") {
                 dir = "desc";

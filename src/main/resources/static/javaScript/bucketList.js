@@ -300,6 +300,78 @@ function createRow(boulder) {
     div.appendChild(bin);
 }
 
+function sortTable(n) {
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById("bucketList");
+    switching = true;
+    dir = "asc";
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("td")[n];
+            y = rows[i+1].getElementsByTagName("td")[n];
+            if ( n === 0 || n === 1 || n === 2 ) {
+                if (dir === "asc") {
+                    if (x.innerText > y.innerText) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir === "desc") {
+                    if (x.innerText < y.innerText) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            } else if ( n ===  3 ) {
+                if (dir === "asc") {
+                    if (statusConverter(x.innerText) > statusConverter(y.innerText)) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir === "desc") {
+                    if (statusConverter(x.innerText) < statusConverter(y.innerText)) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            } else if ( n === 4 || n === 5 ) {
+                if (dir === "asc") {
+                    if (dateConverter(x.innerText) > dateConverter(y.innerText)) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir === "desc") {
+                    if (dateConverter(x.innerText) < dateConverter(y.innerText)) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount ++;
+            for ( i = 0; i < 6; i++) {
+                document.getElementsByClassName("sortUp")[i].innerHTML = "&#9653;";
+                document.getElementsByClassName("sortDown")[i].innerHTML = "&#9663;";
+            }
+            if ( dir === "asc") {
+                document.getElementsByClassName("sortUp")[n].innerHTML = "&#9652;";
+            } else if ( dir === "desc") {
+                document.getElementsByClassName("sortDown")[n].innerHTML = "&#9662;";
+            }
+        } else {
+            if (switchcount === 0 && dir === "asc") {
+                dir = "desc";
+                switching = true;
+            }
+        }
+    }
+}
+
 
 function signOut() {
     sessionStorage.setItem("userID","");

@@ -12,31 +12,55 @@
         <button class="textButton" id="signOut" onclick="signOut()">Sign out</button>
     </div>
     <div class="page-heading">
-        <h1 onclick="signOut()">Bouldering Bucket List</h1>
+        <h1>Bouldering Bucket List</h1>
     </div>
 
 
     <div>
-        <table>
+        <table id="bucketList">
             <thead>
             <tr>
-                <th>
+                <th onclick="sortTable(0)">
                     Boulder name
+                    <div class="sortIcons">
+                        <p class="sortUp">&#9653;</p>
+                        <p class="sortDown">&#9663;</p>
+                    </div>
                 </th>
-                <th>
+                <th onclick="sortTable(1)">
                     Location
+                    <div class="sortIcons">
+                        <p class="sortUp">&#9653;</p>
+                        <p class="sortDown">&#9663;</p>
+                    </div>
                 </th>
-                <th>
+                <th onclick="sortTable(2)">
                     Grade
+                    <div class="sortIcons">
+                    <p class="sortUp">&#9653;</p>
+                    <p class="sortDown">&#9663;</p>
+                    </div>
                 </th>
-                <th>
+                <th onclick="sortTable(3)">
                     Status
+                    <div class="sortIcons">
+                        <p class="sortUp">&#9653;</p>
+                        <p class="sortDown">&#9663;</p>
+                    </div>
                 </th>
-                <th>
+                <th onclick="sortTable(4)">
                     Date of First Attempt
+                    <div class="sortIcons">
+                        <p class="sortUp">&#9653;</p>
+                        <p class="sortDown">&#9663;</p>
+                    </div>
                 </th>
-                <th>
+                <th onclick="sortTable(5)">
                     Date of Completion
+                    <div class="sortIcons">
+                        <p class="sortUp">&#9653;</p>
+                        <p class="sortDown">&#9663;</p>
+                    </div>
                 </th>
             </tr>
             </thead>

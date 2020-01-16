@@ -10,6 +10,7 @@ button {
 thead {
     text-align: center;
     background-color: rgba(26, 26, 25, 0.62);
+    cursor: pointer;
 }
 
 .page-heading {
@@ -88,6 +89,22 @@ td {
     width: 15%;
     height: 25px;
     text-align: center;
+}
+
+.sortIcons {
+    position: relative;
+}
+
+.sortUp {
+    position: absolute;
+    top: -25px;
+    right: 5px;
+}
+
+.sortDown {
+    position: absolute;
+    top: -15px;
+    right: 5px;
 }
 
 .nameRows:hover {

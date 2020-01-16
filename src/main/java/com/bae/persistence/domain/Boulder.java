@@ -111,20 +111,6 @@ public class Boulder {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((attemptDate == null) ? 0 : attemptDate.hashCode());
-		result = prime * result + ((completionDate == null) ? 0 : completionDate.hashCode());
-		result = prime * result + ((grade == null) ? 0 : grade.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((location == null) ? 0 : location.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		return result;
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

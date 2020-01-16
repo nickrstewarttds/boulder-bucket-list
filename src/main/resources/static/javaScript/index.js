@@ -28,7 +28,7 @@ function addUser() {
             "name": name.value,
             "boulders": []
         }
-        axios.post("/userApp/user", user);
+        axios.post("BoulderBucketList/userApp/user", user);
         window.location = window.location;
     }
 }

@@ -10,6 +10,7 @@ button {
 thead {
     text-align: center;
     background-color: rgba(26, 26, 25, 0.62);
+    cursor: pointer;
 }
 
 .page-heading {

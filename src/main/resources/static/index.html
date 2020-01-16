@@ -29,12 +29,13 @@
                     <h3>Adding a user</h3>
                 </div>
                 <div class="modal-body">
-                    <form class="no-border">
-                        <div class="form-group row">
+                    <div class="form-group row">
                             <label for="userName" class="col-sm-5 col-form-label">Name:</label>
                             <input type="text" class="form-control col-sm-6" id="userName"/>
-                        </div>
-                    </form>
+                    </div>
+                    <div style="display: none" id="invalidNameErrorMessage">
+                            <p style="color: #F0453B">Please enter a name between 1 and 20 characters</p>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn textButton cancel" data-dismiss="modal">Close</button>

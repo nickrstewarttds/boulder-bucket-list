@@ -21,14 +21,20 @@ function makeUsersTable() {
 
 function addUser() {
     let name = document.getElementById("userName");
-    let user = {
-        "name":name.value,
-        "boulders":[]
+    if ( name.value === "" || name.value.length > 20) {
+        document.getElementById("invalidNameErrorMessage").setAttribute("style","");
+    } else {
+        let user = {
+            "name": name.value,
+            "boulders": []
+        }
+        axios.post("/userApp/user", user);
+        window.location = window.location;
     }
-    axios.post("/userApp/user",user);
-    window.location = window.location;
 }
 
 function resetAddModal() {
-    document.getElementById("userName").value="";
+    let name = document.getElementById("userName");
+    document.getElementById("invalidNameErrorMessage").setAttribute("style", "display: none");
+    name.value = "";
 }

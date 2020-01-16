@@ -13,6 +13,24 @@ thead {
     cursor: pointer;
 }
 
+.userInfo {
+    position: absolute;
+    top: 20px;
+    right: 100px;
+}
+
+#userInfo {
+    display: inline-block;
+}
+
+#deleteUser {
+    margin: 20px;
+    width: 120px;
+    font-size: small;
+    background-color: #F0453B;
+    display: inline-block;
+}
+
 .page-heading {
     text-align: center;
     margin-top: -50px;

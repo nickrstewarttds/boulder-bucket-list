@@ -1,5 +1,6 @@
 package com.bae.persistence.domain;
 
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -58,27 +59,18 @@ public class User {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (boulders == null) {
-			if (other.boulders != null)
-				return false;
-		} else if (!boulders.equals(other.boulders))
-			return false;
-		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
+	public int hashCode() {
+		return Objects.hash(id, name, boulders);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof User)) return false;
+		User user = (User) o;
+		return getId() == user.getId() &&
+				getName().equals(user.getName()) &&
+				Objects.equals(getBoulders(), user.getBoulders());
 	}
 
 	@Override

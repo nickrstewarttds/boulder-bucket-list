@@ -1,6 +1,7 @@
 package com.bae.persistence.domain;
 
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -111,47 +112,22 @@ public class Boulder {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Boulder other = (Boulder) obj;
-		if (attemptDate == null) {
-			if (other.attemptDate != null)
-				return false;
-		} else if (!attemptDate.equals(other.attemptDate))
-			return false;
-		if (completionDate == null) {
-			if (other.completionDate != null)
-				return false;
-		} else if (!completionDate.equals(other.completionDate))
-			return false;
-		if (grade == null) {
-			if (other.grade != null)
-				return false;
-		} else if (!grade.equals(other.grade))
-			return false;
-		if (id != other.id)
-			return false;
-		if (location == null) {
-			if (other.location != null)
-				return false;
-		} else if (!location.equals(other.location))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (status == null) {
-			if (other.status != null)
-				return false;
-		} else if (!status.equals(other.status))
-			return false;
-		return true;
+	public int hashCode() {
+		return Objects.hash(getId(), getName(), getLocation(), getGrade(), getStatus(), getAttemptDate(), getCompletionDate());
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Boulder)) return false;
+		Boulder boulder = (Boulder) o;
+		return getId() == boulder.getId() &&
+				getName().equals(boulder.getName()) &&
+				getLocation().equals(boulder.getLocation()) &&
+				getGrade() == boulder.getGrade() &&
+				getStatus() == boulder.getStatus() &&
+				Objects.equals(getAttemptDate(), boulder.getAttemptDate()) &&
+				Objects.equals(getCompletionDate(), boulder.getCompletionDate());
 	}
 
 }

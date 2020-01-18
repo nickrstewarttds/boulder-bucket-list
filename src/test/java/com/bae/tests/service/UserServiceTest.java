@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.bae.exceptions.BoulderNotFoundException;
+import com.bae.exceptions.UserNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,6 +39,8 @@ public class UserServiceTest {
 
 	final long id = 1L;
 
+	final long badID = 2L;
+
 	@Before
 	public void init() {
 		this.userList = new ArrayList<>();
@@ -56,6 +60,13 @@ public class UserServiceTest {
 	}
 
 	@Test
+	public void getAllUsersTest() {
+		when(this.repo.findAll()).thenReturn(this.userList);
+
+		assertEquals(this.userList, this.service.getAllUsers());
+	}
+
+	@Test
 	public void deleteUserTest() {
 		when(this.repo.existsById(id)).thenReturn(true, false);
 
@@ -63,6 +74,11 @@ public class UserServiceTest {
 
 		verify(this.repo, times(1)).deleteById(id);
 		verify(this.repo, times(1)).existsById(id);
+	}
+
+	@Test(expected = UserNotFoundException.class)
+	public void deleteBoulderBadIDTest() {
+		this.service.deleteUser(badID);
 	}
 
 	@Test

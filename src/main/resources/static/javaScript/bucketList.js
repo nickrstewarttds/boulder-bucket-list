@@ -1,4 +1,4 @@
-let urlPre ="/BoulderBucketList";
+let urlPre ="";
 
 function createTable() {
     let userId = sessionStorage.getItem("userID");
@@ -275,11 +275,18 @@ function createRow(boulder) {
 
     div.setAttribute('class',"updateDelete");
 
-    pencil.setAttribute('type',"image");
-    pencil.setAttribute("id","update");
-    pencil.setAttribute('src',"../resources/pencil.png");
-    pencil.setAttribute("data-toggle","modal");
-    pencil.setAttribute("data-target","#boulderForm");
+    setAttributes(pencil,
+        {"type": "image", "id": "update", "src": "../resources/pencil.png",
+            "data-toggle": "modal", "data-target": "#boulderForm"});
+
+    setAttributes(bin,
+        {"type": "image", "id": "delete", "src": "../resources/bin.png",
+            "data-toggle": "modal", "data-target": "#confirmDelete"});
+
+    setAttributes(redbin,
+        {"type": "image", "id": "deletered", "src": "../resources/bin.png",
+            "data-toggle": "modal", "data-target": "#confirmDelete"});
+
     pencil.addEventListener("click",() => {
         sessionStorage.setItem("boulderID",boulder.id.toString());
         updateForm();
@@ -287,11 +294,6 @@ function createRow(boulder) {
         boulderCompletionDate.max = new Date().toISOString().split("T")[0];
         });
 
-    bin.setAttribute('type',"image");
-    bin.setAttribute("id","delete");
-    bin.setAttribute('src',"../resources/bin.png");
-    bin.setAttribute("data-toggle","modal");
-    bin.setAttribute("data-target","#confirmDelete");
     bin.addEventListener("click",() => {
         sessionStorage.setItem("boulderID",boulder.id.toString());
         deleteForm();
@@ -305,6 +307,12 @@ function createRow(boulder) {
     div.appendChild(pencil);
     div.appendChild(redbin);
     div.appendChild(bin);
+}
+
+function setAttributes(el, attrs) {
+    for (let key in attrs) {
+        el.setAttribute(key, attrs[key]);
+    }
 }
 
 function sortTable(n) {

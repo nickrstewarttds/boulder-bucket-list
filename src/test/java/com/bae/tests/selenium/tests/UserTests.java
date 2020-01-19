@@ -2,11 +2,7 @@ package com.bae.tests.selenium.tests;
 
 import com.bae.tests.selenium.constants.Constants;
 import com.bae.tests.selenium.pages.IndexPage;
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +30,6 @@ public class UserTests {
     private int port;
 
     private WebDriver driver;
-    private static ExtentReports extent = new ExtentReports("report.html, true");
 
     @Before
     public void startup() {
@@ -50,16 +45,12 @@ public class UserTests {
     @Test
     public void userSetupTest() {
         this.driver.get("http://localhost:" + port + "/index.html");
-        ExtentTest test = extent.startTest("Add user test");
         IndexPage indexPage = PageFactory.initElements(driver, IndexPage.class);
         indexPage.addUser("barry");
         WebDriverWait wait = new WebDriverWait(driver,10);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[4]/table/tr/td")));
         if (indexPage.checkUser("Barry")) {
-            test.log(LogStatus.PASS, "User registration success");
         } else {
-            test.log(LogStatus.FAIL,"User Registration failed");
-            extent.endTest(test);
             fail("Registration failed");
         }
     }
@@ -69,8 +60,4 @@ public class UserTests {
         this.driver.close();
     }
 
-    @AfterClass
-    public static void flushReport() {
-        extent.flush();
-    }
 }

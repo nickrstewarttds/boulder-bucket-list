@@ -4,11 +4,7 @@ import com.bae.persistence.repo.BoulderRepo;
 import com.bae.tests.selenium.constants.Constants;
 import com.bae.tests.selenium.pages.BucketListPage;
 import com.bae.tests.selenium.pages.IndexPage;
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +30,6 @@ public class BoulderTests {
     private int port;
 
     private WebDriver driver;
-    private static ExtentReports extent = new ExtentReports("report.html, true");
 
     @Autowired
     private BoulderRepo repo;
@@ -57,14 +52,10 @@ public class BoulderTests {
 
     @Test
     public void addBoulderTest() {
-        ExtentTest test = extent.startTest("Add boulder test");
         BucketListPage bucketListPage = PageFactory.initElements(driver, BucketListPage.class);
         bucketListPage.addBoulder("rock","place","6B","Completed","01012020","02012020");
         if (bucketListPage.checkBoulder("Rock", "Place", "6B", "Completed", "01/01/2020", "02/01/2020")) {
-            test.log(LogStatus.PASS,"Boulder addition success");
         } else {
-            test.log(LogStatus.FAIL,"Boulder addition failed");
-            extent.endTest(test);
             fail("Add boulder failed");
         }
     }
@@ -74,8 +65,4 @@ public class BoulderTests {
         this.driver.close();
     }
 
-    @AfterClass
-    public static void flushReport() {
-        extent.flush();
-    }
 }

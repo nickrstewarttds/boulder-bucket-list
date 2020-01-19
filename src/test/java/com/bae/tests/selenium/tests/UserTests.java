@@ -41,6 +41,7 @@ public class UserTests {
         System.setProperty(Constants.PROPERTY, Constants.PATH);
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(true);
+        options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         this.driver.manage().window().setSize(new Dimension(1600, 700));

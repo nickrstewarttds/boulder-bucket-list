@@ -40,6 +40,8 @@ public class BoulderTests {
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(true);
         options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
+        options.setBinary("/opt/google/chrome/");
+
         driver = new ChromeDriver(options);
         this.driver.get("http://localhost:" + port + "/index.html");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

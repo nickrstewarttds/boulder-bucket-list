@@ -1,4 +1,4 @@
-let urlPre ="";
+let urlPre ="/BoulderBucketList";
 
 function createTable() {
     let userId = sessionStorage.getItem("userID");

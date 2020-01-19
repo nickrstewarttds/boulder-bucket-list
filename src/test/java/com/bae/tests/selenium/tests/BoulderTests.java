@@ -43,6 +43,7 @@ public class BoulderTests {
     public void startup() {
         System.setProperty(Constants.PROPERTY, Constants.PATH);
         ChromeOptions options = new ChromeOptions();
+        options.setHeadless(true);
         driver = new ChromeDriver(options);
         this.driver.get("http://localhost:" + port + "/index.html");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

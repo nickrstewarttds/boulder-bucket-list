@@ -1,0 +1,212 @@
+<html lang="">
+
+<head>
+    <title>Bouldering Bucket List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div>
+        <button class="textButton" id="signOut" onclick="signOut()">Sign out</button>
+    </div>
+    <div class="userInfo">
+        <h5 id="userInfo"></h5>
+        <button type="button" id="deleteUser" class="btn textButton" data-toggle="modal" data-target="#confirmDeleteUser">Delete user</button>
+    </div>
+    <div class="page-heading">
+        <h1>Bouldering Bucket List</h1>
+    </div>
+
+
+    <div>
+        <table id="bucketList">
+            <thead>
+            <tr>
+                <th onclick="sortTable(0)">
+                    Boulder name
+                    <div class="sortIcons">
+                        <p class="sortUp">&#9653;</p>
+                        <p class="sortDown">&#9663;</p>
+                    </div>
+                </th>
+                <th onclick="sortTable(1)">
+                    Location
+                    <div class="sortIcons">
+                        <p class="sortUp">&#9653;</p>
+                        <p class="sortDown">&#9663;</p>
+                    </div>
+                </th>
+                <th onclick="sortTable(2)">
+                    Grade
+                    <div class="sortIcons">
+                    <p class="sortUp">&#9653;</p>
+                    <p class="sortDown">&#9663;</p>
+                    </div>
+                </th>
+                <th onclick="sortTable(3)">
+                    Status
+                    <div class="sortIcons">
+                        <p class="sortUp">&#9653;</p>
+                        <p class="sortDown">&#9663;</p>
+                    </div>
+                </th>
+                <th onclick="sortTable(4)">
+                    Date of First Attempt
+                    <div class="sortIcons">
+                        <p class="sortUp">&#9653;</p>
+                        <p class="sortDown">&#9663;</p>
+                    </div>
+                </th>
+                <th onclick="sortTable(5)">
+                    Date of Completion
+                    <div class="sortIcons">
+                        <p class="sortUp">&#9653;</p>
+                        <p class="sortDown">&#9663;</p>
+                    </div>
+                </th>
+            </tr>
+            </thead>
+            <tbody id="boulderTable">
+            </tbody>
+        </table>
+    </div>
+
+    <div id="addButton">
+        <button type="button" class="btn textButton" data-toggle="modal" data-target="#boulderForm" onclick="addForm();">
+            Add a climb
+        </button>
+    </div>
+
+    <div class="modal fade" id="boulderForm" tabindex="-1" role="dialog" aria-labelledby="boulderForm" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="heading"></h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="boulderName" class="col-sm-5 col-form-label">Boulder name:</label>
+                        <input type="text" class="form-control col-sm-6" id="boulderName"/>
+                    </div>
+                    <div class="form-group row">
+                        <label for="boulderLocation" class="col-sm-5 col-form-label">Boulder location:</label>
+                        <input type="text" class="form-control col-sm-6" id="boulderLocation"/>
+                    </div>
+                    <div class="form-group row">
+                        <label for="boulderGrade" class="col-sm-5 col-form-label">Grade (Font):</label>
+                        <select class="custom-select col-sm-6" id="boulderGrade">
+                            <option value="" disabled selected hidden>Select the grade</option>
+                            <option value="0">5A</option>
+                            <option value="1">5A+</option>
+                            <option value="2">5B</option>
+                            <option value="3">5B+</option>
+                            <option value="4">5C</option>
+                            <option value="5">5C+</option>
+                            <option value="6">6A</option>
+                            <option value="7">6A+</option>
+                            <option value="8">6B</option>
+                            <option value="9">6B+</option>
+                            <option value="10">6C</option>
+                            <option value="11">6C+</option>
+                            <option value="12">7A</option>
+                            <option value="13">7A+</option>
+                            <option value="14">7B</option>
+                            <option value="15">7B+</option>
+                            <option value="16">7C</option>
+                            <option value="17">7C+</option>
+                            <option value="18">8A</option>
+                            <option value="19">8A+</option>
+                            <option value="20">8B</option>
+                            <option value="21">8B+</option>
+                            <option value="22">8C</option>
+                            <option value="23">8C+</option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label for="boulderStatus" class="col-sm-5 col-form-label">Status:</label>
+                        <select class="custom-select col-sm-6" id="boulderStatus" onchange="showDates();">
+                            <option value="" disabled selected hidden>Select the status</option>
+                            <option value="0">Not Attempted</option>
+                            <option value="1">Attempted</option>
+                            <option value="2">Completed</option>
+                            <option value="3">Flashed</option>
+                        </select>
+                    </div>
+                    <div class="form-group row" style="display: none" id="attemptDate" >
+                        <label for="boulderAttemptDate" class="col-sm-5 col-form-label">First attempt date:</label>
+                        <input type="date" class="form-control col-sm-6" id="boulderAttemptDate"/>
+                    </div>
+                    <div class="form-group row" style="display: none" id="completionDate" >
+                        <label for="boulderCompletionDate" class="col-sm-5 col-form-label">Completion date:</label>
+                        <input type="date" class="form-control col-sm-6" id="boulderCompletionDate"/>
+                    </div>
+                    <div style="display: none" id="missingEntryErrorMessage">
+                        <p style="color: #F0453B">Please ensure all entries are filled</p>
+                    </div>
+                    <div style="display: none" id="missingAttemptDateErrorMessage">
+                        <p style="color: #F0453B">Select the date you attempted the boulder</p>
+                    </div>
+                    <div style="display: none" id="missingDatesErrorMessage">
+                        <p style="color: #F0453B">Select the dates you attempted and completed the boulder</p>
+                    </div>
+                    <div style="display: none" id="completionBeforeAttemptErrorMessage">
+                        <p style="color: #F0453B">Completion date cannot be before first attempt</p>
+                    </div>
+                    <div style="display: none" id="missingCompletionDateErrorMessage">
+                        <p style="color: #F0453B">Select the date you completed the boulder</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn textButton cancel" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn textButton" onclick="addBoulder();" id="submitButton">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmDeleteUser"  tabindex="-1" role="dialog" aria-labelledby="confirmDeleteUser" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="deleteUserHeading"></h3>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn textButton cancel" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn textButton" onclick="deleteUser();">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmDelete"  tabindex="-1" role="dialog" aria-labelledby="confirmDelete" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="deleteHeading"></h3>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn textButton cancel" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn textButton" onclick="deleteBoulder();">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../javaScript/bucketList.js"></script>
+    <script>createTable()</script>
+    <script>showUserInfo()</script>
+</body>
+
+</html>

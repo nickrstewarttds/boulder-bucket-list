@@ -1,0 +1,182 @@
+body {
+    background-color: antiquewhite;
+    font-family: 'Orbitron', serif;
+}
+
+button {
+    font-family: 'Orbitron', serif;
+}
+
+thead {
+    text-align: center;
+    background-color: rgba(26, 26, 25, 0.62);
+    cursor: pointer;
+}
+
+form {
+    border: 3px solid #f1f1f1;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: auto;
+    width: 90%;
+    background-color: white;
+}
+
+th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: auto;
+    width: 15%;
+    height: 30px;
+}
+
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: auto;
+    width: 15%;
+    height: 25px;
+    text-align: center;
+}
+
+
+.userInfo {
+    position: absolute;
+    top: 20px;
+    right: 100px;
+}
+
+.page-heading {
+    text-align: center;
+    margin-top: -50px;
+    margin-bottom: 30px;
+    font-size: large;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.sub-heading {
+    text-align: center;
+    padding-top: 20px;
+}
+
+
+.textButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 20px;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    font-size: medium;
+    border-radius: 12px;
+}
+
+.cancel {
+    background-color: #F0453B;
+}
+
+.container {
+    align-items: center;
+    width: 30%;
+    margin: auto;
+}
+.sortIcons {
+    position: relative;
+}
+
+.sortUp {
+    position: absolute;
+    top: -25px;
+    right: 5px;
+}
+
+.sortDown {
+    position: absolute;
+    top: -15px;
+    right: 5px;
+}
+
+.nameRows:hover {
+    opacity: 0.8;
+    background-color: #8ab3cc;
+}
+
+.no-border {
+    border: none;
+}
+
+.select {
+    box-sizing: border-box;
+}
+
+.updateDelete {
+    position: relative;
+}
+
+#userInfo {
+    display: inline-block;
+}
+
+#deleteUser {
+    margin: 20px;
+    width: 120px;
+    font-size: small;
+    background-color: #F0453B;
+    display: inline-block;
+}
+
+#signOut {
+    width: 100px;
+    font-size: small;
+    background-color: gray;
+}
+
+#addButton {
+    width: 200px;
+    padding-top: 100px;
+    margin: auto;
+    padding-bottom: 100px;
+}
+
+#update {
+    position: absolute;
+    right: -20px;
+    top: -17px;
+}
+
+#update:hover {
+    opacity: 0.8;
+}
+
+#deleteRed {
+    position: absolute;
+    right: -40px;
+    top: -17px;
+}
+
+#delete {
+    position: absolute;
+    right: -40px;
+    top: -17px;
+}
+
+#delete:hover {
+    opacity: 0;
+}
+
+
+#names {
+    width: 200px;
+}
+

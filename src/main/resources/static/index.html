@@ -1,0 +1,58 @@
+<html lang="">
+
+<head>
+    <title>Bouldering Bucket List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div>
+        <button type="button" class="btn textButton" data-toggle="modal" data-target="#addUserForm" onclick="resetAddModal();">Add a user</button>
+    </div>
+    <div class="page-heading">
+        <h1><br>Welcome to the<br>Bouldering Bucket List</h1>
+    </div>
+    <div class="sub-heading">
+        <h3>Who's Bucket List would you like to see?</h3>
+    </div>
+    <div>
+        <table id="names">
+        </table>
+    </div>
+
+    <div class="modal fade" id="addUserForm" tabindex="-1" role="dialog" aria-labelledby="addUserForm" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Adding a user</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                            <label for="userName" class="col-sm-5 col-form-label">Name:</label>
+                            <input type="text" class="form-control col-sm-6" id="userName"/>
+                    </div>
+                    <div style="display: none" id="invalidNameErrorMessage">
+                            <p style="color: #F0453B">Please enter a name between 1 and 20 characters</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn textButton cancel" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn textButton" onclick="addUser();">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="javaScript/index.js"></script>
+    <script>makeUsersTable()</script>
+
+</body>
+
+
+</html>

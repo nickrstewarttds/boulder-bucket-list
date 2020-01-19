@@ -13,74 +13,12 @@ thead {
     cursor: pointer;
 }
 
-.userInfo {
-    position: absolute;
-    top: 20px;
-    right: 100px;
-}
-
-#userInfo {
-    display: inline-block;
-}
-
-#deleteUser {
-    margin: 20px;
-    width: 120px;
-    font-size: small;
-    background-color: #F0453B;
-    display: inline-block;
-}
-
-.page-heading {
-    text-align: center;
-    margin-top: -50px;
-    margin-bottom: 30px;
-    font-size: large;
-}
-
-.pointer {
-    cursor: pointer;
-}
-
-.sub-heading {
-    text-align: center;
-    padding-top: 20px;
-}
-
 form {
     border: 3px solid #f1f1f1;
 }
 
-.textButton {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 20px;
-    border: none;
-    cursor: pointer;
-    width: 200px;
-    font-size: medium;
-    border-radius: 12px;
-}
-
-.cancel {
-    background-color: #F0453B;
-}
-
-#signOut {
-    width: 100px;
-    font-size: small;
-    background-color: gray;
-}
-
 button:hover {
     opacity: 0.8;
-}
-
-.container {
-    align-items: center;
-    width: 30%;
-    margin: auto;
 }
 
 table {
@@ -108,6 +46,51 @@ td {
     text-align: center;
 }
 
+
+.userInfo {
+    position: absolute;
+    top: 20px;
+    right: 100px;
+}
+
+.page-heading {
+    text-align: center;
+    margin-top: -50px;
+    margin-bottom: 30px;
+    font-size: large;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.sub-heading {
+    text-align: center;
+    padding-top: 20px;
+}
+
+
+.textButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 20px;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    font-size: medium;
+    border-radius: 12px;
+}
+
+.cancel {
+    background-color: #F0453B;
+}
+
+.container {
+    align-items: center;
+    width: 30%;
+    margin: auto;
+}
 .sortIcons {
     position: relative;
 }
@@ -129,15 +112,41 @@ td {
     background-color: #8ab3cc;
 }
 
+.no-border {
+    border: none;
+}
+
+.select {
+    box-sizing: border-box;
+}
+
+.updateDelete {
+    position: relative;
+}
+
+#userInfo {
+    display: inline-block;
+}
+
+#deleteUser {
+    margin: 20px;
+    width: 120px;
+    font-size: small;
+    background-color: #F0453B;
+    display: inline-block;
+}
+
+#signOut {
+    width: 100px;
+    font-size: small;
+    background-color: gray;
+}
+
 #addButton {
     width: 200px;
     padding-top: 100px;
     margin: auto;
     padding-bottom: 100px;
-}
-
-.updateDelete {
-    position: relative;
 }
 
 #update {
@@ -150,7 +159,7 @@ td {
     opacity: 0.8;
 }
 
-#deletered {
+#deleteRed {
     position: absolute;
     right: -40px;
     top: -17px;
@@ -166,14 +175,8 @@ td {
     opacity: 0;
 }
 
-.select {
-    box-sizing: border-box;
-}
 
 #names {
     width: 200px;
 }
 
-.no-border {
-    border: none;
-}

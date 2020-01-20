@@ -54,7 +54,13 @@ This is a high level diagram of the system architecture of my application, exclu
 I used JUnit, Mockito and Selenium for unit, integration, and frontend testing respectively, and SonarQube for static reporting.
 
 <a name="report"></a>
-### Report
+### Reports
+
+My Surefire can be found [here](/Documentation/SurefireReport.pdf).
+
+Overall coverage is at 89.6%, with 0 bugs, 4 vulnerabilities, 0 duplications and 24 code smells. The vulnerabilities stem from not using DTO objects, which was cleared with a trainer.
+
+![SonarQube Report](/Documentation/SonarQube.png)
 
 
 <a name="deployment"></a>
